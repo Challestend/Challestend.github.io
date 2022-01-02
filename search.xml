@@ -5319,8 +5319,8 @@ E_{i}&=\sum_{j=0}^{i-1}F[j]G[i-j]\\
         <category>未来算法</category>
       </categories>
       <tags>
-        <tag>分块</tag>
         <tag>树套树</tag>
+        <tag>分块</tag>
       </tags>
   </entry>
   <entry>
@@ -5747,11 +5747,11 @@ id\times\mu&=\varphi\times 1\times\mu\\
         <category>题解</category>
       </categories>
       <tags>
+        <tag>组合数学</tag>
         <tag>SDOI</tag>
         <tag>2009</tag>
         <tag>离散化</tag>
         <tag>树状数组</tag>
-        <tag>组合数学</tag>
       </tags>
   </entry>
   <entry>
@@ -5790,8 +5790,8 @@ id\times\mu&=\varphi\times 1\times\mu\\
         <category>题解</category>
       </categories>
       <tags>
-        <tag>洛谷</tag>
         <tag>数论</tag>
+        <tag>洛谷</tag>
       </tags>
   </entry>
   <entry>
@@ -5850,8 +5850,8 @@ id\times\mu&=\varphi\times 1\times\mu\\
         <category>题解</category>
       </categories>
       <tags>
-        <tag>组合数学</tag>
         <tag>数论</tag>
+        <tag>组合数学</tag>
         <tag>期望</tag>
       </tags>
   </entry>
