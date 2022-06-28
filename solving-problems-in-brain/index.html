@@ -12,11 +12,11 @@
 <p><del>结果那次数据随机放跑了暴力。</del></p>
 <h3 id="「CF1182E」Product-Oriented-Recurrence"><a href="#「CF1182E」Product-Oriented-Recurrence" class="headerlink" title="「CF1182E」Product Oriented Recurrence"></a><a href="http://codeforces.com/problemset/problem/1182/E">「CF1182E」Product Oriented Recurrence</a></h3><p>令</p>
 <script type="math/tex; mode=display">g_{i}=\ln f_{i}</script><p>那么</p>
-<script type="math/tex; mode=display">g_{n}=(2n-6)\ln c+g_{n-1}+g_{n-2}+g_{n-3}</script><p>一定存在这样的$k_{0},k_{1},k_{2},k_{3}$，使得</p>
+<script type="math/tex; mode=display">g_{n}=(2n-6)\ln c+g_{n-1}+g_{n-2}+g_{n-3}</script><p>一定存在这样的$k<em>{0},k</em>{1},k<em>{2},k</em>{3}$，使得</p>
 <script type="math/tex; mode=display">g_{n}=k_{0}\ln c+k_{1}g_{1}+k_{2}g_{2}+k_{3}g_{3}</script><p>于是</p>
-<script type="math/tex; mode=display">f_{n}=c^{k_{0}}\cdot f_{1}^{k_{1}}\cdot f_{2}^{k_{2}}\cdot f_{3}^{k_{3}}</script><h3 id="「CF1093E」Product-Oriented-Recurrence"><a href="#「CF1093E」Product-Oriented-Recurrence" class="headerlink" title="「CF1093E」Product Oriented Recurrence"></a><a href="http://codeforces.com/problemset/problem/1093/E">「CF1093E」Product Oriented Recurrence</a></h3><p>定义$f_{i}$表示$a_{i}$在$b$中对应的下标，$g_{i}$表示$b_{i}$在$a$中对应的下标。</p>
+<script type="math/tex; mode=display">f_{n}=c^{k_{0}}\cdot f_{1}^{k_{1}}\cdot f_{2}^{k_{2}}\cdot f_{3}^{k_{3}}</script><h3 id="「CF1093E」Product-Oriented-Recurrence"><a href="#「CF1093E」Product-Oriented-Recurrence" class="headerlink" title="「CF1093E」Product Oriented Recurrence"></a><a href="http://codeforces.com/problemset/problem/1093/E">「CF1093E」Product Oriented Recurrence</a></h3><p>定义$f<em>{i}$表示$a</em>{i}$在$b$中对应的下标，$g<em>{i}$表示$b</em>{i}$在$a$中对应的下标。</p>
 <p>操作一就是在询问</p>
-<script type="math/tex; mode=display">\sum_{i=l_{a}}^{r_{a}}[f_{i}\in[l_{b},r_{b}]]</script><p>操作二就交换一下$f_{g_{x}}$和$f_{g_{y}}$，$g_{x}$和$g_{y}$。</p>
+<script type="math/tex; mode=display">\sum_{i=l_{a}}^{r_{a}}[f_{i}\in[l_{b},r_{b}]]</script><p>操作二就交换一下$f<em>{g</em>{x}}$和$f<em>{g</em>{y}}$，$g<em>{x}$和$g</em>{y}$。</p>
 <p>大力分块。</p>
 <h3 id="「CF446C」DZY-Loves-Fibonacci-Numbers"><a href="#「CF446C」DZY-Loves-Fibonacci-Numbers" class="headerlink" title="「CF446C」DZY Loves Fibonacci Numbers"></a><a href="http://codeforces.com/problemset/problem/446/C">「CF446C」DZY Loves Fibonacci Numbers</a></h3><p><del>通过查阅题解，</del>我们知道斐波那契数拥有如下性质</p>
 <script type="math/tex; mode=display">F_{n+m}=F_{n+1}F_{m}+F_{n}F_{m-1}</script><p>考虑使用数学归纳法证明。首先</p>

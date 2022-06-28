@@ -13,10 +13,10 @@
 =&\sum_{i=1}^{n}\sum_{j=1}^{m}\sum_{k=1}^{p}(ij,(i,j)k)\cdot((i,j),k)\cdot\cfrac{(i,j)}{(i,k)\cdot(j,k)}\\
 =&\sum_{d=1}^{\min(n,m)}\sum_{x=1}^{\lfloor\tfrac{n}{d}\rfloor}\sum_{y=1}^{\lfloor\tfrac{m}{d}\rfloor}[x\perp y]\sum_{k=1}^{p}(d^{2}xy,dk)\cdot(d,k)\cdot\cfrac{d}{(dx,k)\cdot(dy,k)}\\
 =&\sum_{d=1}^{\min(n,m)}\sum_{x=1}^{\lfloor\tfrac{n}{d}\rfloor}\sum_{y=1}^{\lfloor\tfrac{m}{d}\rfloor}[x\perp y]\sum_{k=1}^{p}d^{2}\cdot(d,k)\cdot\cfrac{(dxy,k)}{(dx,k)\cdot(dy,k)}\\
-\end{aligned}</script><p>考虑将$d,x,y,k$写成唯一分解形式，然后对于第$i$小的质数$c_{i}$，它在四个数中的指数分别是$r_{d,i},r_{x,i},r_{y,i},r_{k,i}$，那么</p>
+\end{aligned}</script><p>考虑将$d,x,y,k$写成唯一分解形式，然后对于第$i$小的质数$c<em>{i}$，它在四个数中的指数分别是$r</em>{d,i},r<em>{x,i},r</em>{y,i},r_{k,i}$，那么</p>
 <script type="math/tex; mode=display">\begin{aligned}
 =&\sum_{d=1}^{\min(n,m)}\sum_{x=1}^{\lfloor\tfrac{n}{d}\rfloor}\sum_{y=1}^{\lfloor\tfrac{m}{d}\rfloor}[x\perp y]\sum_{k=1}^{p}d^{2}\prod_{i=1}c_{i}^{\min(r_{d,i},r_{k,i})+\min(r_{d,i}+r_{x,i}+r_{y,i},r_{k,i})-\min(r_{d,i}+r_{x,i},r_{k,i})-\min(r_{d,i}+r_{y,i},r_{k,i})}
-\end{aligned}</script><p>因为$x\perp y$，$r_{x,i}$和$r_{y,i}$中必定有一个为$0$，带入整理后我们得到</p>
+\end{aligned}</script><p>因为$x\perp y$，$r<em>{x,i}$和$r</em>{y,i}$中必定有一个为$0$，带入整理后我们得到</p>
 <script type="math/tex; mode=display">\begin{aligned}
 =&\sum_{d=1}^{\min(n,m)}\sum_{x=1}^{\lfloor\tfrac{n}{d}\rfloor}\sum_{y=1}^{\lfloor\tfrac{m}{d}\rfloor}[x\perp y]\sum_{k=1}^{p}d^{2}\\
 =&p\sum_{i=1}^{n}\sum_{j=1}^{m}(i,j)^{2}

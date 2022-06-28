@@ -5,8 +5,8 @@
 <p>我就凭感觉xjb扯了（</p>
 <p>现在我们有一个函数$f(x)$，我们想要用一个多项式$g(x)$来近似$x$在$x_{0}$附近时$f(x)$的取值。</p>
 <p>我们令</p>
-<script type="math/tex; mode=display">g(x)=\sum\limits_{i=0}^{n}g[i](x-x_{0})^{i}</script><p>我们想要让$x\rightarrow x_{0}$时，$g$在$x$处的各阶导数与$f$在$x_{0}$处的各阶导数分别相等。</p>
-<p>我们先考虑$0$阶，也就是原函数。因为$x\rightarrow x_{0}$，所有包含$x-x_{0}$的项都可以忽略，因此我们有</p>
+<script type="math/tex; mode=display">g(x)=\sum\limits_{i=0}^{n}g[i](x-x_{0})^{i}</script><p>我们想要让$x\rightarrow x<em>{0}$时，$g$在$x$处的各阶导数与$f$在$x</em>{0}$处的各阶导数分别相等。</p>
+<p>我们先考虑$0$阶，也就是原函数。因为$x\rightarrow x<em>{0}$，所有包含$x-x</em>{0}$的项都可以忽略，因此我们有</p>
 <script type="math/tex; mode=display">g[0]=f(x_{0})</script><p>然后是$1$阶</p>
 <script type="math/tex; mode=display">g^{\prime}(x)=\sum\limits_{i=1}^{n}ig[i](x-x_{0})^{i-1}=g[1]=f^{\prime}(x_{0})</script><p>再然后是$2$阶</p>
 <script type="math/tex; mode=display">g^{\prime\prime}(x)=\sum\limits_{i=2}^{n}i(i-1)g[i](x-x_{0})^{i-2}=2g[2]=f^{\prime\prime}(x_{0})</script><p>最后是$3$阶</p>
@@ -25,7 +25,7 @@ F(G)&=F(G_{0})\\
 <script type="math/tex; mode=display">\begin{aligned}
 F(G)-F(G_{0})&\equiv 0\pmod{x^{t}}\\
 G-G_{0}&\equiv 0\pmod{x^{t}}
-\end{aligned}</script><p>也就是说$G-G_{0}$的最低非零系数的项数大于等于$t$，$(G-G_{0})^{k}$的最低非零系数的项数大于等于$kt$，从而我们有</p>
+\end{aligned}</script><p>也就是说$G-G<em>{0}$的最低非零系数的项数大于等于$t$，$(G-G</em>{0})^{k}$的最低非零系数的项数大于等于$kt$，从而我们有</p>
 <script type="math/tex; mode=display">\begin{aligned}
 F(G)&\equiv F(G_{0})+F^{\prime}(G_{0})(G-G_{0})\pmod{x^{2t}}\\
 F^{\prime}(G_{0})G&\equiv F^{\prime}(G_{0})G_{0}-F(G_{0})\pmod{x^{2t}}\\

@@ -567,7 +567,7 @@
 <p>一开始我以为是只要分数严格高于 $\lfloor\frac{N}{2}\rfloor$ 就不要再提交了，然后发现假了。</p>
 <p>于是我很快（1h 之后）注意到，每次提交之后，如果剩下的提交次数能够达到的期望分数大于等于这此次提交的分数，那么就要再交一发。形式化地，设 $k$ 次提交的期望分数为 $E_k$，有</p>
 <script type="math/tex; mode=display">E_{k+1}=2^{-n}\sum_{i\gt E_k}{n\choose i}i+2^{-n}\sum_{i\leqslant E_k}{n\choose i}\cdot E_k=p(E_k)\cdot E_k+q(E_k)</script><p>其中 $p(E_k),q(E_k)$ 可以预处理出来。</p>
-<p>这是一个变系数线性递推数列。但是注意到数据范围有 $K\leqslant 10^9$，一开始我是想不算到 $E_K$，算到 $E_{3\times 10^7}$ 左右就足够满足精度要求了，结果喜提 <code>WA on test 10</code>。</p>
+<p>这是一个变系数线性递推数列。但是注意到数据范围有 $K\leqslant 10^9$，一开始我是想不算到 $E<em>K$，算到 $E</em>{3\times 10^7}$ 左右就足够满足精度要求了，结果喜提 <code>WA on test 10</code>。</p>
 <p>注意到，当 $\lfloor E_k\rfloor$ 不变的时候，$p(E_k),q(E_k)$ 也是不变的，我们可以用二分求得下一个使得 $\lfloor E_k\rfloor$ 发生变化的 $k$。</p>
 <p>$p(E_k),q(E_k)$ 为常数 $p,q$ 时</p>
 <script type="math/tex; mode=display">E_{k+1}=pE_k+q</script><p>设</p>

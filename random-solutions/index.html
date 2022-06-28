@@ -51,7 +51,7 @@ a_u^4-ka_u&\equiv a_v^4-ka_v\pmod{p}\\
 <p>首先我们有一个简单粗暴的背包搞法。令 $f(i,j,S)$ 表示在 $[i,j]$ 内选出若干个数加起来等于 $S$ 的方案数，那么这个显然可以 $O(n^2w)$ 搞出来。那么答案就是</p>
 <script type="math/tex; mode=display">\sum_{i=1}^{n}\sum_{j=i}^{n}f\left(i,j,\frac{1}{2}\sum_{k=i}^{j}a_k\right)</script><p>但是这不够，我们需要优化。</p>
 <p>考虑分治。设当前分治到 $[L,R]$，令 $m=\left\lfloor\frac{L+R}{2}\right\rfloor$，我们需要处理出左端点在 $[L,m]$ 上且右端点在 $(m,R]$ 上的所有区间的贡献。这里一个区间的贡献指的是一次操作选定这个区间后染色的方案数。</p>
-<p>考虑任意选取 $x_1\in[L,m],x_2\in(m,R]$，令 $T_1=\sum_{i=x_1}^{m}a_i,T_2=\sum_{i=m+1}^{x_2}a_i$。设有一种操作，$[x_1,m]$ 上黑色数字之和为 $S_1$，$(m,x_2]$ 上黑色数字之和为 $S_2$。那么这次操作合法当且仅当</p>
+<p>考虑任意选取 $x<em>1\in[L,m],x_2\in(m,R]$，令 $T_1=\sum</em>{i=x<em>1}^{m}a_i,T_2=\sum</em>{i=m+1}^{x_2}a_i$。设有一种操作，$[x_1,m]$ 上黑色数字之和为 $S_1$，$(m,x_2]$ 上黑色数字之和为 $S_2$。那么这次操作合法当且仅当</p>
 <script type="math/tex; mode=display">S_1+S_2=\frac{T_1+T_2}{2}</script><p>即</p>
 <script type="math/tex; mode=display">(2S_1-T_1)+(2S_2-T_2)=0</script><p>则 $[L,R]$ 上跨中点区间的贡献之和为</p>
 <script type="math/tex; mode=display">\sum_{x_1=L}^{m}\sum_{S_1=0}^{w}\sum_{x_2=m+1}^{R}\sum_{S_2=0}^{w}\left[\left(2S_1-\sum_{i=x_1}^{m}a_i\right)+\left(2S_2-\sum_{i=m+1}^{x_2}a_i\right)=0\right]f(x_1,m,S_1)f(m+1,x_2,S_2)</script><p>虽然这个式子像这样写出来很吓人，但实际上只要稍微发挥一下人类智慧我们就可以将其优化到 $O(w(R-L))$。具体方法读者可自行撕烤。</p>
@@ -70,13 +70,13 @@ a_u^4-ka_u&\equiv a_v^4-ka_v\pmod{p}\\
 <p>注意到 $t_i\in[0,n)$ 且 $t_i\neq 0$，可以看出上述 $u,v$ 必定存在且唯一。</p>
 <p><a href="http://codeforces.com/contest/1451/submission/137894201">评测记录</a></p>
 <h2 id="「CF1613E」Team-Building"><a href="#「CF1613E」Team-Building" class="headerlink" title="「CF1613E」Team Building"></a>「CF1613E」Team Building</h2><p><a href="http://codeforces.com/contest/1316/problem/E">传送门</a></p>
-<p>有 $n$ 个人，要从中选出恰好 $p$ 个人参加比赛以及恰好 $k$ 个人围观。第 $i$ 个人如果围观会产生 $a_i$ 的价值。参加比赛的话有 $p$ 个位置，第 $i$ 个人在第 $j$ 个位置上产生 $s_{i,j}$ 的价值。要求最大化价值和。</p>
-<p>$2\leqslant n\leqslant 10^5$，$1\leqslant p\leqslant 7$，$1\leqslant k,p+k\leqslant n$，$1\leqslant a_i,s_{i,j}\leqslant 10^9$。</p>
+<p>有 $n$ 个人，要从中选出恰好 $p$ 个人参加比赛以及恰好 $k$ 个人围观。第 $i$ 个人如果围观会产生 $a<em>i$ 的价值。参加比赛的话有 $p$ 个位置，第 $i$ 个人在第 $j$ 个位置上产生 $s</em>{i,j}$ 的价值。要求最大化价值和。</p>
+<p>$2\leqslant n\leqslant 10^5$，$1\leqslant p\leqslant 7$，$1\leqslant k,p+k\leqslant n$，$1\leqslant a<em>i,s</em>{i,j}\leqslant 10^9$。</p>
 <p>考虑到，如果我们已经确定好了要让哪些人参加比赛，那么剩下的人里面要去围观的一定是 $a_i$ 最大的那 $k$ 个人。</p>
-<p>于是我们先将所有人按 $a_i$ 降序排序。令 $f_{i,S}$ 表示在前 $i$ 个人中选出一些人参加比赛并填满集合 $S$ 里的位置，然后其他人围观，这样能够得到的最大价值和。</p>
+<p>于是我们先将所有人按 $a<em>i$ 降序排序。令 $f</em>{i,S}$ 表示在前 $i$ 个人中选出一些人参加比赛并填满集合 $S$ 里的位置，然后其他人围观，这样能够得到的最大价值和。</p>
 <p>同理，令 $g_{i,S}$ 表示在前 $i$ 个人中选出一些人参加比赛并填满集合 $S$ 里的位置，然后其他人闲着什么也不干，这样能够得到的最大价值和。</p>
 <p>显然 $O(p2^pn)$ 可以处理出来。</p>
-<p>然后答案就是 $\max_{i=|S|+k}(f_{i,S}+g_{n-i,U-S})$。其中 $U={1,2,\cdots,p}$。</p>
+<p>然后答案就是 $\max<em>{i=|S|+k}(f</em>{i,S}+g_{n-i,U-S})$。其中 $U={1,2,\cdots,p}$。</p>
 <p>这题是我在学校的 ACM 实验室写出来的。一个下午一共写了两道题都和状压有关。下一题也是。</p>
 <p><a href="http://codeforces.com/contest/1316/submission/137951214">评测记录</a></p>
 <h2 id="「CF547C」Mike-and-Foam"><a href="#「CF547C」Mike-and-Foam" class="headerlink" title="「CF547C」Mike and Foam"></a>「CF547C」Mike and Foam</h2><p><a href="http://codeforces.com/contest/547/problem/C">传送门</a></p>

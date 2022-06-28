@@ -20,7 +20,7 @@
 </ol>
 <p><del>不过好像存在常数项也能做的样子。</del></p>
 <p>此类递推式一般具有以下形式</p>
-<script type="math/tex; mode=display">a_{n}=\sum_{i=1}^{k}f_{i}a_{n-i}</script><p>其中$f_{1},f_{2},\cdots,f_{k}$为系数数列。</p>
+<script type="math/tex; mode=display">a_{n}=\sum_{i=1}^{k}f_{i}a_{n-i}</script><p>其中$f<em>{1},f</em>{2},\cdots,f_{k}$为系数数列。</p>
 <p>上式仅针对于$n\geqslant k$的情况，$n\lt k$时$a_{n}$会被给出。</p>
 <p>如下定义初始向量$S$</p>
 <script type="math/tex; mode=display">\begin{bmatrix}
@@ -42,7 +42,7 @@
 &f_{k}&f_{k-1}&f_{k-2}&\cdots&f_{3}&f_{2}&f_{1}
 \end{bmatrix}</script><p>我们有</p>
 <script type="math/tex; mode=display">a_{n}=(A^{n}S)_{0}</script><p>于是我们计算出$A^{n}$即可。但该过程需要的时间复杂度是$O(k^{3}\log n)$的。</p>
-<p>假设，我们有了一个奇妙的序列$q_{0},q_{1},\cdots,q_{k-1}$，它满足</p>
+<p>假设，我们有了一个奇妙的序列$q<em>{0},q</em>{1},\cdots,q_{k-1}$，它满足</p>
 <script type="math/tex; mode=display">A^{n}=\sum_{i=0}^{k-1}q_{i}A^{i}</script><p>这样一来，我们就可以在$O(k^{4})$的时间复杂度内……</p>
 <p>不，实际上我们并不需要知道整个$A^{n}$，我们仅需要知道$A^{n}S$，或者更进一步地，知道$(A^{n}S)_{0}$即可。</p>
 <p>我们把上式两边乘以$S$，然后整理</p>
@@ -54,7 +54,7 @@ A^{n}S&=\sum_{i=0}^{k-1}q_{i}(A^{i}S)\\
 a_{n}&=\sum_{i=0}^{k-1}q_{i}a_{i}
 \end{aligned}</script><p>我们于是得到这样的式子。这使得我们能够在$O(k)$的时间复杂度内计算答案。</p>
 <p>然后我们考虑如何构造$q_{i}$。</p>
-<p>注意到$\sum_{i=0}^{k-1}q_{i}A^{i}$的次数比$A^{n}$低，我们令</p>
+<p>注意到$\sum<em>{i=0}^{k-1}q</em>{i}A^{i}$的次数比$A^{n}$低，我们令</p>
 <script type="math/tex; mode=display">A^{n}=P(A)G(A)+Q(A)</script><p>其中$P,G,Q$是三个矩阵多项式，并且我们钦定$G$的次数是$k$，$PG$的次数是$n$。</p>
 <p>如果说，这个$G$还满足$G(A)=0$，我们就有</p>
 <script type="math/tex; mode=display">A^{n}=\sum_{i=0}^{k-1}q_{i}A^{i}=Q(A)</script><p>也就是说，我们要求的$q_{i}$，就是$Q$的系数，而$Q$是$A^{n}$对$G$取模的结果。</p>
@@ -69,7 +69,7 @@ a_{n}&=\sum_{i=0}^{k-1}q_{i}a_{i}
 <ol>
 <li>构造多项式$G$。</li>
 <li>计算多项式$Q=A^{n}\operatorname{mod} G$。</li>
-<li>计算$a_{n}=\sum_{i=0}^{k-1}q_{i}a_{i}$。</li>
+<li>计算$a<em>{n}=\sum</em>{i=0}^{k-1}q<em>{i}a</em>{i}$。</li>
 </ol>
 <blockquote>
 <p>Updated on 2019-08-04</p>

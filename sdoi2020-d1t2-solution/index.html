@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="zh"><head><meta charset="utf-8"><meta name="generator" content="Hexo 4.2.1"><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"><meta><title>「2020 省选联考 A 卷 D1T2」组合数问题 - Chromium</title><meta description="从现在开始我 blog 写题解要附上简要题意（"><meta property="og:type" content="blog"><meta property="og:title" content="「2020 省选联考 A 卷 D1T2」组合数问题"><meta property="og:url" content="https://github.com/Challestend/sdoi2020-d1t2-solution/"><meta property="og:site_name" content="Chromium"><meta property="og:description" content="从现在开始我 blog 写题解要附上简要题意（"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://github.com/img/og_image.png"><meta property="article:published_time" content="2020-06-21T09:08:37.000Z"><meta property="article:modified_time" content="2021-08-16T02:17:18.810Z"><meta property="article:author" content="Challestend Rehtorbegnaro"><meta property="article:tag" content="组合数学"><meta property="article:tag" content="NTT"><meta property="article:tag" content="多项式"><meta property="article:tag" content="矩阵"><meta property="twitter:card" content="summary"><meta property="twitter:image" content="/img/og_image.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"https://github.com/Challestend/sdoi2020-d1t2-solution/"},"headline":"Chromium","image":["https://github.com/img/og_image.png"],"datePublished":"2020-06-21T09:08:37.000Z","dateModified":"2021-08-16T02:17:18.810Z","author":{"@type":"Person","name":"Challestend Rehtorbegnaro"},"description":"从现在开始我 blog 写题解要附上简要题意（"}</script><link rel="canonical" href="https://github.com/Challestend/sdoi2020-d1t2-solution/"><link rel="icon" href="/img/favicon.svg"><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.12.0/css/all.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@9.12.0/styles/atom-one-light.css"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@400;600&amp;family=Source+Code+Pro"><link rel="stylesheet" href="/css/default.css"><style>body>.footer,body>.navbar,body>.section{opacity:0}</style><!--!--><!--!--><!--!--><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lightgallery@1.6.8/dist/css/lightgallery.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/css/justifiedGallery.min.css"><!--!--><!--!--><!--!--><script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script></head><body class="is-3-column"><nav class="navbar navbar-main"><div class="container"><div class="navbar-brand justify-content-center"><a class="navbar-item navbar-logo" href="/"><img src="/img/logo.svg" alt="Chromium" height="28"></a></div><div class="navbar-menu"><div class="navbar-start"><a class="navbar-item" href="/">Home</a><a class="navbar-item" href="/about">About</a><a class="navbar-item" href="/archives">Archives</a><a class="navbar-item" href="/categories">Categories</a><a class="navbar-item" href="/tags">Tags</a><a class="navbar-item" href="/karin-no-kimyou-na-bouken">LightNovel</a></div><div class="navbar-end"><a class="navbar-item" target="_blank" rel="noopener" title="Download on GitHub" href="https://github.com/ppoffice/hexo-theme-icarus"><i class="fab fa-github"></i></a><a class="navbar-item search" title="搜索" href="javascript:;"><i class="fas fa-search"></i></a></div></div></div></nav><section class="section"><div class="container"><div class="columns"><div class="column order-2 column-main is-8-tablet is-8-desktop is-6-widescreen"><div class="card"><article class="card-content article" role="article"><div class="article-meta size-small is-uppercase level is-mobile"><div class="level-left"><time class="level-item" dateTime="2020-06-21T09:08:37.000Z" title="2020-06-21T09:08:37.000Z">2020-06-21</time><span class="level-item"><a class="link-muted" href="/categories/%E5%8F%A3%E8%83%A1/">口胡</a></span><span class="level-item">7 分钟 读完 (大约 1112 个字)</span></div></div><h1 class="title is-3 is-size-4-mobile">「2020 省选联考 A 卷 D1T2」组合数问题</h1><div class="content"><p>从现在开始我 blog 写题解要附上简要题意（</p>
 <a id="more"></a>
-<p>给定 $m$ 次多项式 $F(x)=\sum_{i=0}^{m}f_{i}x^{i}$，试求</p>
+<p>给定 $m$ 次多项式 $F(x)=\sum<em>{i=0}^{m}f</em>{i}x^{i}$，试求</p>
 <script type="math/tex; mode=display">\sum_{k=0}^{n}{n\choose k}F(k)x^{k}\</script><p>在 $\operatorname{mod}p$ 意义下的值。</p>
 <p>其中 $1\leqslant n,x,p\leqslant 10^{9},0\leqslant f_{i}\leqslant 10^{9},1\leqslant m\leqslant\min(n,1000)$。</p>
 <p>不过话说回来，D2 早上去机房听烜说这是道衡水的原题，而且还是比原题简单的那种。</p>
@@ -43,9 +43,9 @@ G_{n,m}(x)\\
 1
 \end{bmatrix}</script><p>虽然我在我的另一个 blog 里写过了，不过由于某些原因那个 blog 倒了，于是我在这里再写一遍。</p>
 <p>如果直接使用矩阵快速幂来计算 $A^{n}$ 的话，复杂度是 $O(m^{3}\log n)$ 的，但是这还不够。</p>
-<p>考虑我们能不能构造出一个奇妙的序列 $c_{0},c_{1},\cdots,c_{m+1}$ 使得 $C(A)=\sum_{i=0}^{m+1}c_{i}A^{i}=A^{n}$。</p>
+<p>考虑我们能不能构造出一个奇妙的序列 $c<em>{0},c</em>{1},\cdots,c<em>{m+1}$ 使得 $C(A)=\sum</em>{i=0}^{m+1}c_{i}A^{i}=A^{n}$。</p>
 <p>如果我们构造出来了，令 $S_{k}$ 表示 $S$ 从上往下第 $k$ 维的值，从 $0$ 开始标号。那么</p>
-<script type="math/tex; mode=display">(A^{n}S)_{k}=\left(\sum_{i=0}^{m+1}c_{i}A^{i}S\right)_{k}=\sum_{i=0}^{m+1}c_{i}(A^{i}S)_{k}</script><p>注意到 $(A^{i}S)_{k}$ 就是 $G_{i,k}(x)$，不过如果 $k=m+1$ 就是 $1$。这样我们就可以在 $O(m^{2})$ 的复杂度内计算出答案。</p>
+<script type="math/tex; mode=display">(A^{n}S)_{k}=\left(\sum_{i=0}^{m+1}c_{i}A^{i}S\right)_{k}=\sum_{i=0}^{m+1}c_{i}(A^{i}S)_{k}</script><p>注意到 $(A^{i}S)<em>{k}$ 就是 $G</em>{i,k}(x)$，不过如果 $k=m+1$ 就是 $1$。这样我们就可以在 $O(m^{2})$ 的复杂度内计算出答案。</p>
 <p>我们设 $A^{n}=P(A)Q(A)+C(A)$，如果我们能够找到一个 $m+2$ 次多项式 $H$ 使得 $Q(A)=0$，就可以有 $C(A)=A^{n}\operatorname{mod}Q(A)$。</p>
 <hr>
 <p>一下是一些为了求出 $H$ 所必要的矩阵相关知识。</p>
@@ -55,16 +55,16 @@ G_{n,m}(x)\\
 <li>满足 $\text{Det}(A)\neq 0$，即满秩的 $n\times n$ 的矩阵 $A$ 拥有 $n$ 组线性无关的特征向量。</li>
 <li>当且仅当 $\text{Det}(\lambda I-A)=0$ 时存在这样的 $v$。</li>
 </ol>
-<p>显然我们刚才构造的矩阵 $A$ 是满秩的。于是根据 Cayley-Hamilton 定理，有 $\prod_{k=0}^{m+1}(\lambda_{k}I-A)=0$，其中 $\lambda_{0},\lambda_{1},\cdots,\lambda_{m+1}$ 表示 $A$ 的 $m+2$ 组特征向量。</p>
-<p>于是 $Q(A)=\prod_{k=0}^{m+1}(\lambda_{k}I-A)$。</p>
+<p>显然我们刚才构造的矩阵 $A$ 是满秩的。于是根据 Cayley-Hamilton 定理，有 $\prod<em>{k=0}^{m+1}(\lambda</em>{k}I-A)=0$，其中 $\lambda<em>{0},\lambda</em>{1},\cdots,\lambda_{m+1}$ 表示 $A$ 的 $m+2$ 组特征向量。</p>
+<p>于是 $Q(A)=\prod<em>{k=0}^{m+1}(\lambda</em>{k}I-A)$。</p>
 <p>考虑另外一个多项式 $R(\lambda)=\text{Det}(\lambda I-A)$，<del>根据 shadowice dalao 的 blog，</del>这两个多项式的系数对应相等。</p>
 <p>而显然 $\text{Det}(\lambda I-A)=(\lambda-1)(\lambda-x-1)^{m+1}$，使用分治 NTT 可以在 $O(m\log^{2}m)$ 的复杂度内计算出来。</p>
 <p>那么总结一下：</p>
 <ol>
 <li>计算 $R(\lambda)=\text{Det}(\lambda I-A)=(\lambda-1)(\lambda-x-1)^{m+1}$，复杂度 $O(m\log^{2}m)$。</li>
-<li>设 $R(\lambda)=\sum_{i=0}^{m+2}q_{i}\lambda^{i}$，有 $Q(A)=\sum_{i=0}^{m+2}q_{i}A^{i}=0$。</li>
+<li>设 $R(\lambda)=\sum<em>{i=0}^{m+2}q</em>{i}\lambda^{i}$，有 $Q(A)=\sum<em>{i=0}^{m+2}q</em>{i}A^{i}=0$。</li>
 <li>计算 $C(A)=A^{n}\operatorname{mod}Q(A)$，时间复杂度 $O(m\log m\log n)$。</li>
-<li>设 $C(A)=\sum_{i=0}^{m+1}c_{i}A^{i}$，有 $(A^{n}S)_{k}=\sum_{i=0}^{m+1}c_{i}(A^{i}S)_{k}$，也即 $G_{n,k}(x)=\sum_{i=0}^{m+1}c_{i}G_{i,k}(x)$。</li>
+<li>设 $C(A)=\sum<em>{i=0}^{m+1}c</em>{i}A^{i}$，有 $(A^{n}S)<em>{k}=\sum</em>{i=0}^{m+1}c<em>{i}(A^{i}S)</em>{k}$，也即 $G<em>{n,k}(x)=\sum</em>{i=0}^{m+1}c<em>{i}G</em>{i,k}(x)$。</li>
 <li>对于所有的 $0\leqslant i\leqslant m+1,0\leqslant k\leqslant m$ 计算 $G_{i,k}(x)$，我们发现 $G$ 的暴力递推式可以转化成 EGF，于是做 $m$ 遍卷积，复杂度 $O(m^{2}\log m)$。</li>
 </ol>
 <p>那么总体的复杂度相当于 $O(m^{2}\log m)$。</p>

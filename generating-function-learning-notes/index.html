@@ -3,7 +3,7 @@
 <p>来写一篇生成函数吧QAQ</p>
 <p><del>本文全部内容抄袭自<a href="https://www.cnblogs.com/asuldb/p/10533453.html">这篇blog</a>和<a href="https://www.cnblogs.com/asuldb/p/10534860.html">这篇blog</a></del></p>
 <a id="more"></a>
-<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>一个数列${a_{0},a_{1},\cdots,a_{n}}$的生成函数$f(x)$被定义为</p>
+<h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>一个数列${a<em>{0},a</em>{1},\cdots,a_{n}}$的生成函数$f(x)$被定义为</p>
 <script type="math/tex; mode=display">f(x)=\sum_{i=0}^{n}a_{i}x^{i}</script><p>就这样（</p>
 <h3 id="封闭表达式"><a href="#封闭表达式" class="headerlink" title="封闭表达式"></a>封闭表达式</h3><p>但是这个形式比较玄乎，不便于我们推式子。特别是当我们需要求一个无穷数列的生成函数时。于是我们希望能够进一步化简。</p>
 <p>比如说，当$a_{n}=c^{n}$，即这个数列是${1,c,c^{2},\cdots}$时，它的生成函数是</p>
@@ -13,7 +13,7 @@
 F(x)&=\sum_{i=0}^{n}F_{i}x^{i}\\
 &=\sum_{i=0}^{n}(F_{i-1}+F_{i-2})x^{i}
 \end{aligned}</script><p>为了方便，我们定义当$n\lt 0$时，$F_{n}=0$。</p>
-<p>然后我们发现$F_{1}=F_{0}+F_{-1}=0+0=0$，于是我们再加上一项$[i=1]$。</p>
+<p>然后我们发现$F<em>{1}=F</em>{0}+F_{-1}=0+0=0$，于是我们再加上一项$[i=1]$。</p>
 <script type="math/tex; mode=display">\begin{aligned}
 F(x)&=\sum_{i=0}^{n}(F_{i-1}+F_{i-2}+[i=1])x^{i}\\
 &=x+\sum_{i=0}^{n}(F_{i-1}+F_{i-2})x^{i}\\
@@ -81,7 +81,7 @@ F(x)&=\cfrac{1-x-\sqrt{1-2x-3x^{2}}}{2x^{2}}\\
 &=\cfrac{(\sqrt{1+x}-\sqrt{1-3x})^{2}}{4x^{2}}
 \end{aligned}</script><p>woc这什么鬼东西溜了溜了。</p>
 <p><del>留作课后习题，哪位dalao推出来了让我%一%（</del></p>
-<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="「TJOI2015」概率论"><a href="#「TJOI2015」概率论" class="headerlink" title="「TJOI2015」概率论"></a><a href="https://www.luogu.org/problemnew/show/P3978">「TJOI2015」概率论</a></h4><p>首先很明显，互不同构的二叉树一共$C_{n}$棵，其中$C_{n}$是卡特兰数。现在我们希望求出这些二叉树的叶子结点总数，我们记为$F_{n}$。不难发现</p>
+<h3 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h3><h4 id="「TJOI2015」概率论"><a href="#「TJOI2015」概率论" class="headerlink" title="「TJOI2015」概率论"></a><a href="https://www.luogu.org/problemnew/show/P3978">「TJOI2015」概率论</a></h4><p>首先很明显，互不同构的二叉树一共$C<em>{n}$棵，其中$C</em>{n}$是卡特兰数。现在我们希望求出这些二叉树的叶子结点总数，我们记为$F_{n}$。不难发现</p>
 <script type="math/tex; mode=display">F_{0}=0</script><script type="math/tex; mode=display">F_{1}=1</script><script type="math/tex; mode=display">F_{n}=2\sum_{i=0}^{n-1}C_{i}F_{n-i-1}+[i=1]</script><script type="math/tex; mode=display">\begin{aligned}
 F(x)&=\sum_{i=0}^{n}F_{i}x^{i}\\
 &=\sum_{i=0}^{n}\left(2\sum_{j=0}^{i-1}C_{j}F_{i-j-1}+[i=1]\right)x^{i}\\
@@ -101,7 +101,7 @@ F(x)&=\sum_{i=0}^{n}F_{i}x^{i}\\
 &=\cfrac{n(n+1)}{2(2n-1)}
 \end{aligned}</script><h4 id="「国家集训队」整数的lqp拆分"><a href="#「国家集训队」整数的lqp拆分" class="headerlink" title="「国家集训队」整数的lqp拆分"></a><a href="https://www.luogu.org/problemnew/show/P4451">「国家集训队」整数的lqp拆分</a></h4><p>其实这道题我几个月前推出来了一个$O(n^{2})$的式子（</p>
 <p>如果记答案为$G_{n}$，我们有</p>
-<script type="math/tex; mode=display">G_{n}=\sum_{i=0}^{n}F_{i}G_{n-i}</script><p>其中$F_{n}$是斐波那契数。为了方便，我们强行定义$G_{0}=1$。</p>
+<script type="math/tex; mode=display">G_{n}=\sum_{i=0}^{n}F_{i}G_{n-i}</script><p>其中$F<em>{n}$是斐波那契数。为了方便，我们强行定义$G</em>{0}=1$。</p>
 <script type="math/tex; mode=display">\begin{aligned}
 G(x)&=\sum_{i=0}^{n}G_{i}x^{i}\\
 &=\sum_{i=0}^{n}\left(\sum_{j=0}^{i}F_{j}G_{i-j}+[i=0]\right)x^{i}\\

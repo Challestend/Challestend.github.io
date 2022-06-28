@@ -17,8 +17,8 @@
 G(x)&=\ln F(x)\\
 &=\ln\prod_{i=1}^{n}(a_{i}x+1)\\
 &=\sum_{i=1}^{n}\ln(a_{i}x+1)
-\end{aligned}</script><p>我们先来考虑如何求出$F$。定义$Q_{i}$为从${a_{n}}$中选出$i$个数相乘，这样的所有方案结果的总和，且$Q_{0}=1$。我们有</p>
-<script type="math/tex; mode=display">F(x)=\sum_{i=0}^{n}Q_{i}x^{i}</script><p>然后分治。假设我们现在已经求出了$[l,mid]$上的$Q_{L,0},Q_{L,1},\cdots,Q_{L,mid-l+1}$和$(mid,r]$上的$Q_{R,0},Q_{R,1},\cdots,Q_{R,r-mid}$，不难发现</p>
+\end{aligned}</script><p>我们先来考虑如何求出$F$。定义$Q<em>{i}$为从${a</em>{n}}$中选出$i$个数相乘，这样的所有方案结果的总和，且$Q_{0}=1$。我们有</p>
+<script type="math/tex; mode=display">F(x)=\sum_{i=0}^{n}Q_{i}x^{i}</script><p>然后分治。假设我们现在已经求出了$[l,mid]$上的$Q<em>{L,0},Q</em>{L,1},\cdots,Q<em>{L,mid-l+1}$和$(mid,r]$上的$Q</em>{R,0},Q<em>{R,1},\cdots,Q</em>{R,r-mid}$，不难发现</p>
 <script type="math/tex; mode=display">Q_{i}=\sum_{j=0}^{i}Q_{L,j}Q_{R,i-j}</script><p>这部分的时间复杂度为$O(n\log^{2}n)$。</p>
 <p>然后我们将$G$在$1$这个位置泰勒展开。先回忆一下<a href="/polynomial-learning-notes-pt2/">泰勒展开</a>的式子</p>
 <script type="math/tex; mode=display">g(x)=\sum\limits_{i=1}^{+\infty}\cfrac{f^{(i)}(x_{0})}{i!}(x-x_{0})^i</script><script type="math/tex; mode=display">\ln^{(n)}(x)=(-1)^{n-1}(n-1)!x^{-n}</script><script type="math/tex; mode=display">\begin{aligned}

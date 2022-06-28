@@ -3,7 +3,7 @@
 <a id="more"></a>
 <h3 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h3><p>我们知道，<a href="/number-theory-learning-notes/">杜教筛</a>可以在$O(n^{\tfrac{2}{3}})$的时间复杂度内计算某些给定的积性函数的前缀和。</p>
 <p>但是现在我们希望更快。于是我们有了min_25筛（</p>
-<p>以下，我们约定$p$是一个质数。$\mathbb{P}_{i}$表示第$i$小的质数，$\mathbb{P}_{0}=0$。$\text{minp}(n)$表示$n$最小的质因数，$\text{minp}(1)=0$。</p>
+<p>以下，我们约定$p$是一个质数。$\mathbb{P}<em>{i}$表示第$i$小的质数，$\mathbb{P}</em>{0}=0$。$\text{minp}(n)$表示$n$最小的质因数，$\text{minp}(1)=0$。</p>
 <p>现在我们要求一个积性函数$f$的前缀和。我们需要它满足以下两条性质：</p>
 <ol>
 <li>$f(p)$是一个<strong>可以快速求前缀和的完全积性函数</strong>，或者能用多个这样的函数运算得到。</li>
@@ -15,15 +15,15 @@
 <script type="math/tex; mode=display">F(x,+\infty)=\sum_{i=1}^{x}[i\in\mathbb{P}]f(i)</script><p>我们回忆一下埃式筛法的运行过程。</p>
 <p>筛完$k$次后，我们除去了最小质因数小于等于$\mathbb{P}_{k}$的合数，剩下了质数和最小质因数大于$\mathbb{P}_k$的合数。</p>
 <p>可以看到这和$F(x,y)$的定义十分吻合。$F(x,y)$就是埃式筛法筛完$y$次后，没有被筛掉的数的$f^{\prime}$的值的和。</p>
-<p>首先，第$y$次筛掉的最小的数很明显是$\mathbb{P}_{y}^{2}$，如果$\mathbb{P}_{y}^{2}\gt x$，我们什么也筛不掉，此时$F(x,y)=F(x,y-1)$。</p>
+<p>首先，第$y$次筛掉的最小的数很明显是$\mathbb{P}<em>{y}^{2}$，如果$\mathbb{P}</em>{y}^{2}\gt x$，我们什么也筛不掉，此时$F(x,y)=F(x,y-1)$。</p>
 <p>也因此，筛质数筛到$\sqrt{n}$即可。</p>
-<p>否则，即$\mathbb{P}_{y}^{2}\leqslant x$，我们将所有数除以$\mathbb{P}_{y}$，之前所有最小质因数等于$\mathbb{P}_{y}$的合数一一对应到了现在所有大于等于$\mathbb{P}_{y}$的数。</p>
-<p>又因为$f^{\prime}$是完全积性的，假如我们有一个需要筛掉的数$z$，我们可以通过$f^{\prime}(\cfrac{z}{\mathbb{P}_{y}})f^{\prime}(\mathbb{P}_{y})$计算$f^{\prime}(z)$。</p>
+<p>否则，即$\mathbb{P}<em>{y}^{2}\leqslant x$，我们将所有数除以$\mathbb{P}</em>{y}$，之前所有最小质因数等于$\mathbb{P}<em>{y}$的合数一一对应到了现在所有大于等于$\mathbb{P}</em>{y}$的数。</p>
+<p>又因为$f^{\prime}$是完全积性的，假如我们有一个需要筛掉的数$z$，我们可以通过$f^{\prime}(\cfrac{z}{\mathbb{P}<em>{y}})f^{\prime}(\mathbb{P}</em>{y})$计算$f^{\prime}(z)$。</p>
 <p>那么看起来</p>
 <script type="math/tex; mode=display">F(x,y)=F(x,y-1)-f^{\prime}(\mathbb{P}_{y})F(\lfloor\cfrac{n}{\mathbb{P}_{y}}\rfloor,y-1)</script><p>$F(\lfloor\cfrac{n}{\mathbb{P}_{y}}\rfloor,y-1)$包含了三类数的$f^{\prime}$的值：</p>
 <ol>
 <li>大于等于$\mathbb{P}_{y}$的质数。</li>
-<li>最小质因数大于等于$\mathbb{P}_{y}$（大于$\mathbb{P}_{y-1}$）的合数。</li>
+<li>最小质因数大于等于$\mathbb{P}<em>{y}$（大于$\mathbb{P}</em>{y-1}$）的合数。</li>
 <li>小于$\mathbb{P}_{y}$的质数。</li>
 </ol>
 <p>但是很明显第三类数不能被除去，因此实际上</p>
@@ -41,9 +41,9 @@
 <h3 id="第二部分"><a href="#第二部分" class="headerlink" title="第二部分"></a>第二部分</h3><p>在第一部分中我们求出了所有质数的贡献，现在我们要扩展到全体整数。</p>
 <p>定义</p>
 <script type="math/tex; mode=display">S(x,y)=\sum_{i=1}^{x}[\text{minp}(i)\geqslant\mathbb{P}_{y}]f(i)</script><p>也就是所有最小质因数大于等于$\mathbb{P}_{y}$的数的$f$的值的和。我们最终要求的就是$S(n,1)+f(1)$。</p>
-<p>首先我们需要统计所有质数的贡献，也就是$F(x,+\infty)-\sum\limits_{i=1}^{y-1}f(\mathbb{P}_{i})$。</p>
+<p>首先我们需要统计所有质数的贡献，也就是$F(x,+\infty)-\sum\limits<em>{i=1}^{y-1}f(\mathbb{P}</em>{i})$。</p>
 <p>关于合数，我们枚举最小的质因数，然后把所有数除以这个数的若干次幂，得到的商的最小质因数应当大于这个数。</p>
-<script type="math/tex; mode=display">\sum_{i=y}^{\mathbb{P}_{i}^{2}\leqslant n}\sum_{j=1}^{\mathbb{P}_{i}^{j+1}\leqslant n}f(\mathbb{P}_{i}^{j})S(\lfloor\cfrac{x}{\mathbb{P}_{i}^{j}}\rfloor,i+1)</script><p>但是还有一个问题是$S(\lfloor\cfrac{x}{\mathbb{P}_{i}^{j}}\rfloor,i+1)$中不包括$f(1)$，因此$f(\mathbb{P}_{i}^{j})$没有被统计，我们需要手动算进来</p>
+<script type="math/tex; mode=display">\sum_{i=y}^{\mathbb{P}_{i}^{2}\leqslant n}\sum_{j=1}^{\mathbb{P}_{i}^{j+1}\leqslant n}f(\mathbb{P}_{i}^{j})S(\lfloor\cfrac{x}{\mathbb{P}_{i}^{j}}\rfloor,i+1)</script><p>但是还有一个问题是$S(\lfloor\cfrac{x}{\mathbb{P}<em>{i}^{j}}\rfloor,i+1)$中不包括$f(1)$，因此$f(\mathbb{P}</em>{i}^{j})$没有被统计，我们需要手动算进来</p>
 <script type="math/tex; mode=display">\sum_{i=y}^{\mathbb{P}_{i}^{2}\leqslant n}\sum_{j=1}^{\mathbb{P}_{i}^{j+1}\leqslant n}\left(f(\mathbb{P}_{i}^{j})S(\lfloor\cfrac{x}{\mathbb{P}_{i}^{j}}\rfloor,i+1)+f(\mathbb{P}_{i}^{j+1})\right)</script><p>于是</p>
 <script type="math/tex; mode=display">S(x,y)=F(x,+\infty)-\sum\limits_{i=1}^{y-1}f(\mathbb{P}_{i})+\sum_{i=y}^{\mathbb{P}_{i}^{2}\leqslant n}\sum_{j=1}^{\mathbb{P}_{i}^{j+1}\leqslant n}\left(f(\mathbb{P}_{i}^{j})S(\lfloor\cfrac{x}{\mathbb{P}_{i}^{j}}\rfloor,i+1)+f(\mathbb{P}_{i}^{j+1})\right)</script><p>然后暴力搜，记忆化都不需要，时间复杂度还是$O(\cfrac{n^{\tfrac{3}{4}}}{\log n})$。<del>就很神奇（</del></p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">S</span><span class="params">(re <span class="keyword">int</span> x,re <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=<span class="number">1</span>||g[y]&gt;x)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        re <span class="keyword">int</span> id=x&lt;=sq?id1[x]:id2[n/x];</span><br><span class="line">        re <span class="keyword">int</span> res=F[id]-fsum[y<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> i=y;i&lt;=g[<span class="number">0</span>]&amp;&amp;g[i]*g[i]&lt;=x;++i)</span><br><span class="line">            <span class="keyword">for</span>(re <span class="keyword">int</span> p=g[i];p*g[i]&lt;=x;p*=g[i])</span><br><span class="line">                res+=<span class="comment">/*1*/</span>*S(x/p,i+<span class="number">1</span>)+<span class="comment">/*2*/</span>;</span><br><span class="line">                <span class="comment">//1处应填f(p)，2处应填f(p*g[i])</span></span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -69,8 +69,8 @@
 <p>其实这个题面有点考阅读的。</p>
 <p>但是我们发现次大质因数这个函数和质数并没有什么关系，而且不积性。<del>说好的只能筛积性函数呢（</del></p>
 <p>我们来分析一下min_25筛的运行过程。</p>
-<p>调用到$S(x,y)$时，剩下的最小质因数大于等于$\mathbb{P}_{y}$的数中，只有质数与$\mathbb{P}_{y-1}$相乘之后能够得到次大质因数为$\mathbb{P}_{y-1}$的数。这部分可以直接算。</p>
-<p>关于次大质因数大于$\mathbb{P}_{y-1}$的，还是枚举递归暴力搜。然后还是没有算$f(\mathbb{P}_{i}^{j})$，手动加。</p>
+<p>调用到$S(x,y)$时，剩下的最小质因数大于等于$\mathbb{P}<em>{y}$的数中，只有质数与$\mathbb{P}</em>{y-1}$相乘之后能够得到次大质因数为$\mathbb{P}_{y-1}$的数。这部分可以直接算。</p>
+<p>关于次大质因数大于$\mathbb{P}<em>{y-1}$的，还是枚举递归暴力搜。然后还是没有算$f(\mathbb{P}</em>{i}^{j})$，手动加。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="keyword">long</span> <span class="title">S</span><span class="params">(re <span class="keyword">long</span> <span class="keyword">long</span> n,re <span class="keyword">long</span> <span class="keyword">long</span> x,re <span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=<span class="number">1</span>||g[y]&gt;x)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">else</span>&#123;</span><br><span class="line">        re <span class="keyword">int</span> k=id[x&lt;=sq?x:n/x+sq];</span><br><span class="line">        re <span class="keyword">long</span> <span class="keyword">long</span> res=(y&gt;<span class="number">1</span>?g[y<span class="number">-1</span>]:<span class="number">0</span>)*(prmCnt[k]-y+<span class="number">1</span>);</span><br><span class="line">        <span class="keyword">for</span>(re <span class="keyword">int</span> i=y;i&lt;=g[<span class="number">0</span>]&amp;&amp;<span class="number">1L</span>L*g[i]*g[i]&lt;=x;++i)</span><br><span class="line">            <span class="keyword">for</span>(re <span class="keyword">long</span> <span class="keyword">long</span> p=g[i];p*g[i]&lt;=x;p*=g[i])</span><br><span class="line">                res+=S(n,x/p,i+<span class="number">1</span>)+g[i];</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="http://uoj.ac/submission/324057">提交记录</a>。</p>
 <p><del>一道比一道神仙，像我这种菜鸡只能抄题解了（</del></p>

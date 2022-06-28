@@ -3,7 +3,7 @@
 <p>因为觉得把所有东西都堆在一篇 Blog 太挤了，于是考虑每十题一篇（</p>
 <a id="more"></a>
 <h2 id="「CF1408F」Two-Different"><a href="#「CF1408F」Two-Different" class="headerlink" title="「CF1408F」Two Different"></a>「CF1408F」Two Different</h2><p><a href="https://codeforces.com/contest/1408/problem/F">传送门</a></p>
-<p>想象有一个长度为 $n$ 的正整数序列 $a$ 和函数 $f:\mathbb{N_+}\times\mathbb{N_+}\rightarrow\mathbb{N_+}$。每次操作指定两个位置 $u,v$，然后将当前的 $a_u$ 和 $a_v$ 同时替换为 $f(a_u,a_v)$。您需要给出方案，使得对于任意的序列 $a$ 和函数 $f$，$q$ 次操作后整个序列最多只剩下两个不同的正整数。</p>
+<p>想象有一个长度为 $n$ 的正整数序列 $a$ 和函数 $f:\mathbb{N<em>+}\times\mathbb{N</em>+}\rightarrow\mathbb{N_+}$。每次操作指定两个位置 $u,v$，然后将当前的 $a_u$ 和 $a_v$ 同时替换为 $f(a_u,a_v)$。您需要给出方案，使得对于任意的序列 $a$ 和函数 $f$，$q$ 次操作后整个序列最多只剩下两个不同的正整数。</p>
 <p>比如说 $n=3$，一种可能的最终序列是</p>
 <script type="math/tex; mode=display">\{f(a_1,a_2),f(a_1,a_2),a_3\}</script><p>$n=4$</p>
 <script type="math/tex; mode=display">\{f(a_1,a_2),f(a_1,a_2),f(a_3,a_4),f(a_3,a_4)\}</script><p>$n=5$</p>
@@ -64,7 +64,7 @@
 <h2 id="「CF1167F」Scalar-Queries"><a href="#「CF1167F」Scalar-Queries" class="headerlink" title="「CF1167F」Scalar Queries"></a>「CF1167F」Scalar Queries</h2><p>// 口胡一时爽，实现火葬场（光速逃</p>
 <p><a href="https://codeforces.com/contest/1167/problem/F">传送门</a></p>
 <p>给定一个长度为 $n$ 的序列 $a$，保证 $a_i$ 两两不同。如下定义 $f(l,r)$：</p>
-<p>将 $a_l,a_{l+1},\cdots,a_r$ 取出并从小到大排序。设结果为 $b_1,b_2,\cdots,b_{r-l+1}$。那么</p>
+<p>将 $a<em>l,a</em>{l+1},\cdots,a<em>r$ 取出并从小到大排序。设结果为 $b_1,b_2,\cdots,b</em>{r-l+1}$。那么</p>
 <script type="math/tex; mode=display">f(l,r)=\sum_{i=1}^{r-l+1}i\cdot b_i</script><p>求</p>
 <script type="math/tex; mode=display">\sum_{1\leqslant l\leqslant r\leqslant n}f(l,r)</script><p>模 $10^9+7$。</p>
 <p>$1\leqslant n\leqslant 5\times 10^5$，$1\leqslant a_i\leqslant 10^9$。</p>
@@ -87,7 +87,7 @@
 <p>相反地，假设我们现在有一个恰好包含 $n-k-1$ 个 $1$ 和 $m+k+1$ 个 $-1$ 的序列 $a^\prime$，记其前缀和为 $s^\prime$。取最小的 $i$ 使得 $s^\prime_i=-k-1$。将 $a^\prime_1,a^\prime_2,\cdots,a^\prime_i$ 取相反数我们就还原出了 $a$。</p>
 <p>也就是说上述的 $a$ 和 $a^\prime$ 之间存在一一映射。注意到 $a^\prime$ 一共有 ${n+m\choose n-k-1}$，我们就得到 $F_k={n+m\choose n}-{n+m\choose n-k-1}$。</p>
 <p>特别地，$F_n={n+m\choose n}$。</p>
-<p>然后令 $G_k=F_k-F_{k-1}$，计算</p>
+<p>然后令 $G<em>k=F_k-F</em>{k-1}$，计算</p>
 <script type="math/tex; mode=display">\sum_{i=\max(n-m,0)}^{n}i\cdot G_i</script><p>即为答案。</p>
 <p>$m=0$ 时需要特判直接输出 $n$。</p>
 <p><del>结果我 WA 了三发。</del></p>
@@ -148,7 +148,7 @@
 <p>不知道这道题正解是什么，不过我感觉我的做法非常的奇怪。</p>
 <p>首先定义 $f_{u,k}$ 表示在 $u$ 的子树内且到 $u$ 的距离严格小于 $2^k$ 的所有点中点权的最小值，然后将这个东西预处理出来——至于怎么预处理就发挥人类智慧吧只能说我的方法感觉已经乱了。</p>
 <p>然后将询问给出的 $k$ 分解成若干个 $2$ 的正整数次幂，这里令</p>
-<script type="math/tex; mode=display">k=\sum_{i=1}^{L}2^{x_i}</script><p>其中 $x_i$ 两两不同。那么我们首先对于在 $u$ 的子树内且到 $u$ 的距离恰好为 $1$ 的每一个点 $v$，计算 $f_{v,x_1}$ 的最小值；然后再对于距离恰好为 $1+2^{x_1}$ 的每一个点 $v$，计算 $f_{v,x_2}$ 的最小值；依此类推。然后将上述 $L$ 个值与 $u$ 自身的点权取最小值即为答案。</p>
+<script type="math/tex; mode=display">k=\sum_{i=1}^{L}2^{x_i}</script><p>其中 $x<em>i$ 两两不同。那么我们首先对于在 $u$ 的子树内且到 $u$ 的距离恰好为 $1$ 的每一个点 $v$，计算 $f</em>{v,x<em>1}$ 的最小值；然后再对于距离恰好为 $1+2^{x_1}$ 的每一个点 $v$，计算 $f</em>{v,x_2}$ 的最小值；依此类推。然后将上述 $L$ 个值与 $u$ 自身的点权取最小值即为答案。</p>
 <p>关于「距离恰好为某个数」这个限制条件，我们可以考虑对原树求一个类似于 BFS 序的东西，就是说，进行一次 BFS，然后对于每个点，定义其 BFS 为其是第几个入队的。</p>
 <p>我们刚刚定义的这个 BFS 有一个十分容易注意到的性质：原树中深度相同的节点一定会组成一个连续段。而且能够想象得出来的是，如果我们在进行 BFS 和 DFS 时，对于每个点，访问它的出边的顺序相同，那么对于 BFS 序序列中的一个深度相同的连续段，这些点的 DFS 序一定也是递增的。</p>
 <p>这就意味着我们能够通过二分查找来找到，在这样一个连续段上，哪个区间恰好属于某个点的子树。然后套用数据结构在 BFS 序上维护区间最小值即可。</p>

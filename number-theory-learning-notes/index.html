@@ -47,16 +47,16 @@
 <p>常见的积性函数有$\varphi,d,\sigma$。$\varphi(n)$的值等于小于等于$n$且与$n$互质的正整数的数量。$d(n)$和$\sigma(n)$的值分别等于$n$的约数个数和约数和。</p>
 <p>关于$\varphi$的积性，我并不会证（</p>
 <p>我们来分析$d$的积性。首先，根据唯一分解定理，$n$的每个因数都可以唯一地分解成$n$所有质因子的非负整数次幂乘积。不妨设</p>
-<script type="math/tex; mode=display">n=\prod\limits_{i=1}^{N}p_{i}^{r_{i}}</script><p>其中$p_{i}$都是质数，所有$r_{i}$都是正整数。对于每一个$p_{i}$，它的指数有$(r_{i}+1)$种取值，因而我们有</p>
+<script type="math/tex; mode=display">n=\prod\limits_{i=1}^{N}p_{i}^{r_{i}}</script><p>其中$p<em>{i}$都是质数，所有$r</em>{i}$都是正整数。对于每一个$p<em>{i}$，它的指数有$(r</em>{i}+1)$种取值，因而我们有</p>
 <script type="math/tex; mode=display">d(n)=\prod\limits_{i=1}^{N}(r_{i}+1)</script><p>我们再假设有一个$m$，且</p>
 <script type="math/tex; mode=display">m=\prod\limits_{i=1}^{M}q_{i}^{s_{i}}</script><p>如果说$n\perp m$，肯定有</p>
 <script type="math/tex; mode=display">\forall i\in [1,N]\cap\mathbb{Z},j\in [1,M]\cap\mathbb{Z}\;\;p_{i}\neq q_{j}</script><p>于是我们就有</p>
 <script type="math/tex; mode=display">nm=(\prod\limits_{i=1}^{N}p_{i}^{r_{i}})(\prod\limits_{j=1}^{M}q_{j}^{s_{j}})</script><script type="math/tex; mode=display">\begin{aligned}
 d(nm)&=(\prod\limits_{i=1}^{N}(r_{i}+1))(\prod\limits_{j=1}^{M}(s_{j}+1))\\
 &=d(n)d(m)
-\end{aligned}</script><p>不妨再反过来考虑。如果说$n\not\perp m$，那么一定存在一对$(i,j)(i\in [1,N]\cap\mathbb{Z},j\in [1,M]\cap\mathbb{Z})$，使得$p_{i}=q_{j}$。那么$d(n)d(m)$就会有一个因子是$(r_{i}+1)(s_{j}+1)=r_{i}s_{j}+r_{i}+s_{j}+1$。但是仔细思考我们会发现，$d(nm)$中对应的项应该是$r_{i}+s_{j}+1$。因而此时$d(nm)\neq d(n)d(m)$。</p>
+\end{aligned}</script><p>不妨再反过来考虑。如果说$n\not\perp m$，那么一定存在一对$(i,j)(i\in [1,N]\cap\mathbb{Z},j\in [1,M]\cap\mathbb{Z})$，使得$p<em>{i}=q</em>{j}$。那么$d(n)d(m)$就会有一个因子是$(r<em>{i}+1)(s</em>{j}+1)=r<em>{i}s</em>{j}+r<em>{i}+s</em>{j}+1$。但是仔细思考我们会发现，$d(nm)$中对应的项应该是$r<em>{i}+s</em>{j}+1$。因而此时$d(nm)\neq d(n)d(m)$。</p>
 <p>我们再来分析$\sigma$的积性。还是设</p>
-<script type="math/tex; mode=display">n=\prod\limits_{i=1}^{N}p_{i}^{r_{i}}</script><p>其中$p_{i}$都是质数，所有$r_{i}$都是正整数。与$d$不同的是，现在我们是要用$p_{i}$乘出$n$的因数，$p_{i}$在此过程中可以产生的贡献为$p_{i}^x(x\in [0,r_{i}]\cap\mathbb{Z})$。我们可以把这想象成一个$N$个数组，第$i$个数组的长度为$r_{i}+1$，第$j$个元素为$p_{i}^{j-1}$。现在我们每次从每个数组里选出恰好一个元素相乘，要求所有方案的乘积之和。我们知道，这个问题的答案就是</p>
+<script type="math/tex; mode=display">n=\prod\limits_{i=1}^{N}p_{i}^{r_{i}}</script><p>其中$p<em>{i}$都是质数，所有$r</em>{i}$都是正整数。与$d$不同的是，现在我们是要用$p<em>{i}$乘出$n$的因数，$p</em>{i}$在此过程中可以产生的贡献为$p<em>{i}^x(x\in [0,r</em>{i}]\cap\mathbb{Z})$。我们可以把这想象成一个$N$个数组，第$i$个数组的长度为$r<em>{i}+1$，第$j$个元素为$p</em>{i}^{j-1}$。现在我们每次从每个数组里选出恰好一个元素相乘，要求所有方案的乘积之和。我们知道，这个问题的答案就是</p>
 <script type="math/tex; mode=display">\prod\limits_{i=1}^{N}\sum\limits_{j=0}^{r_{i}}p_{i}^{j}</script><p>这正是$\sigma(n)$的值。</p>
 <p>接下来的过程就与上文证明$d$的积性如出一辙了，在此不再重复。</p>
 <p>现在我们来分析，两个积性函数的卷积是否也是积性函数。<del>虽然说都这么问了肯定就是了。</del></p>
