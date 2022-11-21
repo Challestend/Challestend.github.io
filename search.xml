@@ -12,7 +12,7 @@
 <p>害群之马竟是我自己 /kk</p>
 <a id="more"></a>
 <h1 id="我写出来的题"><a href="#我写出来的题" class="headerlink" title="我写出来的题"></a>我写出来的题</h1><h2 id="A-Welcome-to-USTC"><a href="#A-Welcome-to-USTC" class="headerlink" title="A. Welcome to USTC"></a>A. Welcome to USTC</h2><p>给定一个字符串 $S$。保证 $S$ 中恰好包含 $\mathtt{U},\mathtt{S},\mathtt{T},\mathtt{C}$ 四个大写英文字母各一个，其他字符均为小写英文字母，且 $\mathtt{USTC}$ 在 $S$ 中作为<strong>子序列</strong>出现。</p>
-<p>每次操作可以交换 $S$ 中的两个相邻字符。现要让 $\mathtt{USTC}$ 在 $S$ 中作为<strong>字串</strong>出现，试求最小操作次数。</p>
+<p>每次操作可以交换 $S$ 中的两个相邻字符。现要让 $\mathtt{USTC}$ 在 $S$ 中作为<strong>子串</strong>出现，试求最小操作次数。</p>
 <p>$4\leqslant |S|\leqslant 10^4$。</p>
 <p>$\mathtt{1s/256MB}$。</p>
 <p>设 $\mathtt{U},\mathtt{S},\mathtt{T},\mathtt{C}$ 的下标依次为 $a,b,c,d$，答案显然为</p>
