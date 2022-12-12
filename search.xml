@@ -1,6 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>浅谈基于转置原理的多项式多点求值算法</title>
+    <url>/polynomial-multipoint/</url>
+    <content><![CDATA[<p>考虑一个经典的问题。给定 $n$ 次多项式</p>
+<script type="math/tex; mode=display">F(x)=\sum_{i=0}^nf_ix^i</script><p>和 $n+1$ 个点值 $a_0,a_1,\dots,a_n$。您需要对于每个 $a_k$，求出</p>
+<script type="math/tex; mode=display">b_k=F(a_k)</script><p>对 $998244353$ 取模。</p>
+<p>据说以前这种问题都是采用多项式取模的方法。但是现在我们有新科技了。</p>
+<p>本篇文章将会以我个人认为十分通俗易懂的方式来详细地讲解这种新科技。</p>
+<p>参考文献略。</p>
+<a id="more"></a>
+<h2 id="线性算法"><a href="#线性算法" class="headerlink" title="线性算法"></a>线性算法</h2><p>若一个算法可以被看作是方阵 $A$，输入向量 $\mathbf v$，输出向量 $A\mathbf v$，则称该算法为线性算法。</p>
+<p>比如说，FFT 就是一个线性算法，其对应的方阵为</p>
+<script type="math/tex; mode=display">\begin{bmatrix}
+1&1&1&\cdots&1\\
+1&\omega_n^1&\omega_n^2&\cdots&\omega_n^n\\
+1&\omega_n^2&\omega_n^4&\cdots&\omega_n^{2n}\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+1&\omega_n^n&\omega_n^{2n}&\cdots&\omega_n^{n^2}\\
+\end{bmatrix}</script><h2 id="转置原理"><a href="#转置原理" class="headerlink" title="转置原理"></a>转置原理</h2><p>对于一个线性算法，设其对应的方阵 $A$ 满足</p>
+<script type="math/tex; mode=display">A=E_1E_2\cdots E_n</script><p>其中 $E_i$ 均为初等矩阵。则有</p>
+<script type="math/tex; mode=display">A^{\mathrm T}=E_n^{\mathrm T}\cdots E_2^{\mathrm T}E_1^{\mathrm T}</script><p>这里稍微复习一下，初等矩阵指的是只进行一次初等变换的矩阵。这里的初等变换包括</p>
+<ol>
+<li>$v_i\leftarrow v_i\cdot k$</li>
+<li>$v_i\leftarrow v_i+v_j\cdot k$</li>
+</ol>
+<p>如果 $E_i$ 对应第一种初等变换，它的转置就是自身；如果是第二种，转置后 $i$ 和 $j$ 互换，即对应的初等变换变为 $v_j\leftarrow v_j+v_i\cdot k$。</p>
+<p>这里的关键点在于，如果 $A\mathbf v$ 比较好求，而 $A^{\mathrm T}\mathbf v$ 相对难求，我们可以将求 $A\mathbf v$ 的过程分析出来，把每一步转置然后倒序执行，就可以求出 $A^{\mathrm T}\mathbf v$ 了。</p>
+<h2 id="多项式乘积的转置"><a href="#多项式乘积的转置" class="headerlink" title="多项式乘积的转置"></a>多项式乘积的转置</h2><p>考虑两个多项式</p>
+<script type="math/tex; mode=display">F(x)=\sum_{i=0}^nf_ix^i</script><p>和</p>
+<script type="math/tex; mode=display">G(x)=\sum_{i=0}^mg_ix^i</script><p>令它们的乘积为</p>
+<script type="math/tex; mode=display">H(x)=\sum_{i=0}^{n+m}h_ix^i</script><p>考虑计算这一乘积的算法。为了便于理解，我们将 $G(x)$ 视作常量，$F(x)$ 和 $H(x)$ 视作变量，考虑一个作用在如下 $(n+1)+(n+m+1)=2n+m+2$ 维列向量上的线性算法</p>
+<script type="math/tex; mode=display">\begin{bmatrix}
+f_0\\
+f_1\\
+f_2\\
+\vdots\\
+f_n\\
+h_0\\
+h_1\\
+\vdots\\
+h_{n+m}
+\end{bmatrix}</script><p>初始时 $f_i$ 已经有值，而 $h_i$ 为 $0$。算法流程如下：</p>
+<ol>
+<li>循环变量 $i\leftarrow 0\dots n+m$</li>
+<li>循环变量 $j\leftarrow \max(0,i-m)\dots\min(n,i)$</li>
+<li>执行 $h_i\leftarrow h_i+f_j\times g_{i-j}$</li>
+</ol>
+<p>考虑这一过程的转置，其流程如下：</p>
+<ol>
+<li>循环变量 $i\leftarrow n+m\dots 0$</li>
+<li>循环变量 $j\leftarrow \min(n,i)\dots\max(0,i-m)$</li>
+<li>执行 $f_j\leftarrow f_j+h_i\times g_{i-j}$</li>
+</ol>
+<p>相当于在已知 $H(x)$ 和 $G(x)$ 的情况下求解 $F(x)$。其中</p>
+<script type="math/tex; mode=display">f_k=\sum_{i-j=k}h_ig_j=\sum_{i+(m-j)=m+k}h_ig^{\mathrm R}_{m-j}=\sum_{i+j=m+k}h_ig^{\mathrm R}_j</script><p>其中 $g^{\mathrm R}_i=g_{m-i}$，即 $G$ 的所有系数翻转过来。</p>
+<p>于是我们可以如下定义多项式乘积的转置</p>
+<script type="math/tex; mode=display">[x^k](H\times^{\mathrm T}G)=[x^{m+k}](H\times G^{\mathrm R})</script><p>不难发现，如果 $F(x)$ 是 $n$ 次多项式，$G(x)$ 是 $m$ 次多项式，那么 $(F\times^{\mathrm T}G)(x)$ 会是 $n-m$ 次多项式。</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>令</p>
+<script type="math/tex; mode=display">F=\begin{bmatrix}
+1&a_0^1&a_0^2&\cdots&a_0^n\\
+1&a_1^1&a_1^2&\cdots&a_1^n\\
+1&a_2^1&a_2^2&\cdots&a_2^n\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+1&a_n^1&a_n^2&\cdots&a_n^n\\
+\end{bmatrix}
+\qquad\alpha=\begin{bmatrix}
+f_0\\
+f_1\\
+f_2\\
+\vdots\\
+f_n
+\end{bmatrix}
+\qquad\beta=\begin{bmatrix}
+b_0\\
+b_1\\
+b_2\\
+\vdots\\
+b_n
+\end{bmatrix}</script><p>我们有</p>
+<script type="math/tex; mode=display">F\alpha=\beta</script><p>考虑</p>
+<script type="math/tex; mode=display">\gamma=F^{\mathrm T}\alpha=\begin{bmatrix}
+1&1&1&\cdots&1\\
+a_0^1&a_1^1&a_2^1&\cdots&a_n^1\\
+a_0^2&a_1^2&a_2^2&\cdots&a_n^2\\
+\vdots&\vdots&\vdots&\ddots&\vdots\\
+a_0^n&a_1^n&a_2^n&\cdots&a_n^n\\
+\end{bmatrix}
+\begin{bmatrix}
+f_0\\
+f_1\\
+f_2\\
+\vdots\\
+f_n
+\end{bmatrix}
+=\begin{bmatrix}
+c_0\\
+c_1\\
+c_2\\
+\vdots\\
+c_n
+\end{bmatrix}</script><p>不难发现</p>
+<script type="math/tex; mode=display">c_k=\sum_{i=0}^nf_ia_i^k</script><p>定义生成函数</p>
+<script type="math/tex; mode=display">C(x)=\sum_{i=0}^n\frac{f_i}{1-a_ix}</script><p>则</p>
+<script type="math/tex; mode=display">c_k=[x^k]C(x)</script><p>这里 $C(x)$ 可以通过经典的分治 NTT 求解。令</p>
+<script type="math/tex; mode=display">C_{l,r}(x)=\frac{P_{l,r}(x)}{Q_{l,r}(x)}</script><p>对于叶子节点 $[l,l]$，执行</p>
+<script type="math/tex; mode=display">P_{l,l}(x)=f_i</script><script type="math/tex; mode=display">Q_{l,l}(x)=1-a_ix</script><p>对于内部节点 $[l,r]$，执行</p>
+<script type="math/tex; mode=display">P_{l,r}(x)=P_{l,m}(x)Q_{m+1,r}(x)+P_{m+1,r}(x)Q_{l,m}(x)</script><script type="math/tex; mode=display">Q_{l,r}(x)=Q_{l,m}(x)Q_{m+1,r}(x)</script><p>注意到，$Q_{l,r}(x)$ 实际上和 $f_i$ 没有任何关系，我们可以把它们视作常量。然后把剩下的 $n^2$ 个 $P_{l,r}(x)$ 全部塞进一个向量里，那么上述分治过程就可以视作是一个针对该向量的线性算法。</p>
+<p>我们可以写得再清晰一些，比如说像下面这样</p>
+<script type="math/tex; mode=display">P_{l,r}(x)\leftarrow P_{l,m}(x)\times Q_{m+1,r}(x)</script><script type="math/tex; mode=display">P_{l,r}(x)\leftarrow P_{m+1,r}(x)\times Q_{l,m}(x)</script><p>以及最后一步的</p>
+<script type="math/tex; mode=display">C_{0,n}(x)\leftarrow P_{0,n}(x)\times Q_{0,n}^{-1}(x)</script><p>那么转置之后，第一步自然就是</p>
+<script type="math/tex; mode=display">B_{0,n}(x)\leftarrow F(x)\times^{\mathrm T}Q_{0,n}^{-1}(x)</script><p>在这之后，从上向下分治，对于内部节点 $[l,r]$，执行</p>
+<script type="math/tex; mode=display">B_{l,m}(x)\leftarrow B_{l,r}(x)\times^{\mathrm T}Q_{m+1,r}(x)</script><script type="math/tex; mode=display">B_{m+1,r}(x)\leftarrow B_{l,r}(x)\times^{\mathrm T}Q_{l,m}(x)</script><p>最终对于叶子节点 $[l,l]$，$B_{l,l}(x)$ 必定会是一个 $0$ 次多项式，其仅有的一个常数项系数就是我们要求的 $b_i$ 了。</p>
+<p>当然，如果多项式次数和点值数量不对等也很容易处理，用 $0$ 补齐即可。</p>
+<p><a href="https://www.luogu.com.cn/problem/P5050">请问您要来点板子题吗 qwq？</a></p>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>这个算法好在哪里：</p>
+<ol>
+<li>常数小：<code>std::vector</code> 也不必太过担心被卡常。</li>
+<li>代码实现难度小：只要能够完全理解整个算法流程，便能够十分迅速且正确地写出代码。</li>
+</ol>
+]]></content>
+      <categories>
+        <category>学术</category>
+      </categories>
+      <tags>
+        <tag>NTT</tag>
+        <tag>多项式</tag>
+        <tag>矩阵</tag>
+        <tag>多点求值</tag>
+        <tag>线性代数</tag>
+        <tag>转置原理</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ICPC 2022 Regional 合肥站游记</title>
     <url>/icpc-2022-regional-hefei-notes/</url>
     <content><![CDATA[<p>今天本来会有一场大物的考试。还好我因为打 ICPC 申请了免考不然就要在大物考场上丢人了。</p>
@@ -122,9 +254,9 @@
       <tags>
         <tag>数论</tag>
         <tag>杂题</tag>
+        <tag>DP</tag>
         <tag>构造</tag>
         <tag>莫比乌斯反演</tag>
-        <tag>DP</tag>
         <tag>图论</tag>
         <tag>数学期望</tag>
         <tag>ICPC</tag>
@@ -335,8 +467,8 @@ P(0,23)&P(1,23)&\cdots&P(23,23)\\
       <tags>
         <tag>Codeforces</tag>
         <tag>杂题</tag>
-        <tag>构造</tag>
         <tag>DP</tag>
+        <tag>构造</tag>
         <tag>简单题</tag>
         <tag>博弈论</tag>
         <tag>公平组合游戏</tag>
@@ -515,8 +647,8 @@ P(0,23)&P(1,23)&\cdots&P(23,23)\\
       <tags>
         <tag>Codeforces</tag>
         <tag>杂题</tag>
-        <tag>构造</tag>
         <tag>思维</tag>
+        <tag>构造</tag>
         <tag>Dijkstra</tag>
         <tag>简单题</tag>
         <tag>贪心</tag>
@@ -643,8 +775,8 @@ P(0,23)&P(1,23)&\cdots&P(23,23)\\
         <tag>树状数组</tag>
         <tag>Codeforces</tag>
         <tag>杂题</tag>
-        <tag>构造</tag>
         <tag>思维</tag>
+        <tag>构造</tag>
         <tag>观察性质</tag>
         <tag>2-SAT</tag>
         <tag>Dijkstra</tag>
@@ -897,8 +1029,8 @@ P(0,23)&P(1,23)&\cdots&P(23,23)\\
         <category>题解</category>
       </categories>
       <tags>
-        <tag>随机游走</tag>
         <tag>图论</tag>
+        <tag>随机游走</tag>
         <tag>数学期望</tag>
       </tags>
   </entry>
@@ -1094,17 +1226,17 @@ P(0,23)&P(1,23)&\cdots&P(23,23)\\
         <tag>线段树</tag>
         <tag>虚树</tag>
         <tag>杂题</tag>
-        <tag>构造</tag>
         <tag>CodeForces</tag>
         <tag>思维</tag>
+        <tag>DP</tag>
+        <tag>二分答案</tag>
         <tag>树形 DP</tag>
+        <tag>构造</tag>
         <tag>莫比乌斯反演</tag>
         <tag>卡特兰数</tag>
         <tag>根号算法</tag>
-        <tag>DP</tag>
         <tag>DFS 序</tag>
         <tag>BFS 序</tag>
-        <tag>二分答案</tag>
       </tags>
   </entry>
   <entry>
@@ -2046,12 +2178,12 @@ a_u^4-ka_u&\equiv a_v^4-ka_v\pmod{p}\\
         <tag>杂题</tag>
         <tag>CodeForces</tag>
         <tag>思维</tag>
-        <tag>树形 DP</tag>
         <tag>DP</tag>
-        <tag>二分答案</tag>
         <tag>状态压缩 DP</tag>
+        <tag>二分答案</tag>
         <tag>最小生成树</tag>
         <tag>Boruvka</tag>
+        <tag>树形 DP</tag>
       </tags>
   </entry>
   <entry>
@@ -4821,8 +4953,8 @@ s_{n}(x)&=\sum_{i=0}^{+\infty}s(n,i)x^{i}\\
         <category>题解</category>
       </categories>
       <tags>
-        <tag>Luogu</tag>
         <tag>数论</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -4892,8 +5024,8 @@ G_{i,j,k}&=\sum_{x=i}^{n}\sum_{y=j}^{m}\sum_{z=k}^{c}(-1)^{x-i+y-j+z-k}C_{x}^{i}
         <category>题解</category>
       </categories>
       <tags>
-        <tag>Luogu</tag>
         <tag>数论</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
@@ -6430,8 +6562,8 @@ h(n,a,b,c)&=\sum_{i=0}^{n}\lfloor\cfrac{ai+b}{c}\rfloor^{2}\\
       </categories>
       <tags>
         <tag>Luogu</tag>
-        <tag>树状数组</tag>
         <tag>分块</tag>
+        <tag>树状数组</tag>
         <tag>HEOI</tag>
         <tag>2012</tag>
         <tag>莫队</tag>
@@ -7430,12 +7562,12 @@ id\times\mu&=\varphi\times 1\times\mu\\
         <category>题解</category>
       </categories>
       <tags>
+        <tag>组合数学</tag>
         <tag>Luogu</tag>
         <tag>SDOI</tag>
         <tag>2009</tag>
         <tag>离散化</tag>
         <tag>树状数组</tag>
-        <tag>组合数学</tag>
       </tags>
   </entry>
   <entry>
@@ -7474,8 +7606,8 @@ id\times\mu&=\varphi\times 1\times\mu\\
         <category>题解</category>
       </categories>
       <tags>
-        <tag>Luogu</tag>
         <tag>数论</tag>
+        <tag>Luogu</tag>
       </tags>
   </entry>
   <entry>
