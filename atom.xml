@@ -1,29 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>关原美夜的妙妙屋</title>
+  <title>可怜队长雪见的妙妙屋</title>
   
   
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://github.com/Challestend/"/>
-  <updated>2024-04-11T10:14:56.203Z</updated>
+  <updated>2025-02-17T11:34:35.940Z</updated>
   <id>https://github.com/Challestend/</id>
   
   <author>
-    <name>Miya Sekihara</name>
+    <name>Yukimi Soromon</name>
     
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>建成了全新的博客</title>
+    <link href="https://github.com/Challestend/new-blog-built/"/>
+    <id>https://github.com/Challestend/new-blog-built/</id>
+    <published>2025-02-17T11:21:01.000Z</published>
+    <updated>2025-02-17T11:34:35.940Z</updated>
+    
+    <content type="html"><![CDATA[<p>由此向下，四百六十五亿光年。</p><a id="more"></a><p><a href="http://www.yukimisdiary.org/">http://www.yukimisdiary.org/</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;由此向下，四百六十五亿光年。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="颓废" scheme="https://github.com/Challestend/categories/%E9%A2%93%E5%BA%9F/"/>
+    
+    
+      <category term="颓废" scheme="https://github.com/Challestend/tags/%E9%A2%93%E5%BA%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>随笔题解 Ct. 4</title>
+    <link href="https://github.com/Challestend/random-solution-ct-5/"/>
+    <id>https://github.com/Challestend/random-solution-ct-5/</id>
+    <published>2024-10-14T16:28:28.000Z</published>
+    <updated>2024-10-14T17:15:15.390Z</updated>
+    
+    <content type="html"><![CDATA[<p><a href="https://codeforces.com/contest/2025">Educational Codeforces Round 170 (Rated for Div. 2)</a></p><p>呵呵呵，许久不曾 CF 了……</p><a id="more"></a><h2 id="A-B-C"><a href="#A-B-C" class="headerlink" title="A. B. C."></a>A. B. C.</h2><p>略。</p><h2 id="D-Attribute-Checks"><a href="#D-Attribute-Checks" class="headerlink" title="D. Attribute Checks"></a>D. Attribute Checks</h2><h3 id="Description"><a href="#Description" class="headerlink" title="Description"></a>Description</h3><p>考虑一款游戏，游戏角色有两个属性：力量和智力。</p><p>接下来会发生 $n$ 个事件。第 $i$ 个事件可能是：</p><ol><li>属性分配：你可以选择力量 $+1$ 或智力 $+1$</li><li>力量检查：给出一个阈值 $r$，如果你的力量 $\geqslant r$，你获得一分</li><li>智力检查：给出一个阈值 $r$，如果你的智力 $\geqslant r$，你获得一分</li></ol><p>并且恰好会有 $m$ 个事件是属性分配。</p><p>问 $n$ 个事件结束之后你最多能拿多少得分。</p><p>$1 \leqslant m \leqslant 5000$，$m \lt n \leqslant 2 \cdot 10^6$。$r \leqslant m$。</p><p>$\texttt{2.5s/512MiB}$。</p><h3 id="Solution"><a href="#Solution" class="headerlink" title="Solution"></a>Solution</h3><p>令 $\text{dp}[i][j]$ 表示第 $i$ 次属性分配之后力量为 $j$，这样的最高得分。然后 DP。</p><h2 id="E-Card-Game"><a href="#E-Card-Game" class="headerlink" title="E. Card Game"></a>E. Card Game</h2><h3 id="Description-1"><a href="#Description-1" class="headerlink" title="Description"></a>Description</h3><p>现在这里有 $n \cdot m$ 张卡牌。$m$ 是偶数。每张卡牌都有花色和点数两个属性。花色是 $1 \sim n$ 的整数，点数是 $1 \sim m$ 的整数。花色和点数的 $n \cdot m$ 种组合每种恰好只有一张。</p><p>对于两张卡牌：</p><ol><li>如果花色不同，花色为 $1$ 的卡牌总能打赢花色非 $1$ 的卡牌</li><li>如果花色相同，点数更高的卡牌能打赢点数更低的卡牌</li></ol><p>现将这 $n \cdot m$ 张卡牌两两配对，使得每对卡牌的其中一张能够打赢另外一张。问方案数。对 $998244353$ 取模。</p><p>$1 \leqslant n, m \leqslant 500$。</p><p>$\texttt{2s/512MiB}$。</p><h3 id="Solution-1"><a href="#Solution-1" class="headerlink" title="Solution"></a>Solution</h3><p>考虑给每张卡牌分配一个括号。</p><p>对于 $2 \sim n$ 的每种花色，将这种花色的 $m$ 张卡牌按点数从大到小排开，可以得到一个括号序列。</p><p>比如说 <code>()(())</code> 就是说 $1-2, 3-6, 4-5$ 两两配对。</p><p>如果出现不匹配的情况，比如说 <code>()()))</code>，这个例子里多出来 $2$ 个右括号，那么花色 $1$ 的括号序列里就需要多出来 $2$ 个左括号。</p><p>如果这些括号序列里存在没有使用的左括号，因为整体的括号数量要是一样的，花色 $1$ 的括号序列里就会多出来等量的右括号。它们就配对不上了。</p><p>那么，对于 $2 \sim n$ 的每种花色，实际合法的括号序列就是：</p><ol><li>总和 $\leqslant 0$</li><li>最后一个括号是右括号</li></ol><p>花色 $1$ 的合法括号序列就是：</p><ol><li>前缀和总是 $\geqslant 0$</li><li>总和 $= - \sum$ 其他花色括号序列的总和</li></ol><p>然后就是 DP 水平（</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;a href=&quot;https://codeforces.com/contest/2025&quot;&gt;Educational Codeforces Round 170 (Rated for Div. 2)&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;呵呵呵，许久不曾 CF 了……&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="题解" scheme="https://github.com/Challestend/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+      <category term="Codeforces" scheme="https://github.com/Challestend/tags/Codeforces/"/>
+    
+      <category term="杂题" scheme="https://github.com/Challestend/tags/%E6%9D%82%E9%A2%98/"/>
+    
+      <category term="DP" scheme="https://github.com/Challestend/tags/DP/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>随笔题解 Ex. 1</title>
+    <link href="https://github.com/Challestend/random-solution-ex-1/"/>
+    <id>https://github.com/Challestend/random-solution-ex-1/</id>
+    <published>2024-05-11T05:35:36.000Z</published>
+    <updated>2024-05-11T06:20:34.851Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="/img/694FA7A82D66D9316B7A84E47302E711.jpg" alt=""></p><p>校内 ACM 群里看到的申必数学题。</p><a id="more"></a><p>令 $p_{n, k}$ 表示给定 $n$ 的初值，那一坨东西等于 $k$ 的概率。有</p><script type="math/tex; mode=display">p_{n, k} = \sum_{i = k - 1}^{n - 1} \frac{p_{n - 1, i}}{i + 1}</script><p>边界条件</p><script type="math/tex; mode=display">p_{1, 1} = 1</script><p>假设</p><script type="math/tex; mode=display">\lim_{n \rightarrow \infty} p_{n, k} = p_k</script><p>那么</p><script type="math/tex; mode=display">p_k = \sum_{i = k - 1}^n \frac{p_i}{i + 1}</script><p>把右边那个求和为记作 $s_{k - 1}$。不难通过归纳法得出</p><script type="math/tex; mode=display">p_k = k (k + 1) s_{k + 1}</script><p>再用这个柿子来回捣鼓一下可以得到</p><script type="math/tex; mode=display">p_k = \frac{p_{k - 1}}{k - 1} = \frac{p_1}{(k - 1)!}</script><p>于是</p><script type="math/tex; mode=display">\sum_{k \geqslant 1} p_k = \sum_{k \geqslant 1} \frac{1}{(k - 1)!} p_1 = e p_1 = 1</script><p>可以解得</p><script type="math/tex; mode=display">p_1 = \frac{1}{e} \qquad p_k = \frac{1}{(k - 1)! e}</script>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;/img/694FA7A82D66D9316B7A84E47302E711.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;校内 ACM 群里看到的申必数学题。&lt;/p&gt;
+    
+    </summary>
+    
+      <category term="题解" scheme="https://github.com/Challestend/categories/%E9%A2%98%E8%A7%A3/"/>
+    
+    
+      <category term="数学归纳法" scheme="https://github.com/Challestend/tags/%E6%95%B0%E5%AD%A6%E5%BD%92%E7%BA%B3%E6%B3%95/"/>
+    
+      <category term="概率期望" scheme="https://github.com/Challestend/tags/%E6%A6%82%E7%8E%87%E6%9C%9F%E6%9C%9B/"/>
+    
+  </entry>
+  
+  <entry>
     <title>随笔题解 Pb. 9</title>
     <link href="https://github.com/Challestend/random-solution-pb-9/"/>
     <id>https://github.com/Challestend/random-solution-pb-9/</id>
     <published>2024-04-11T09:37:32.000Z</published>
-    <updated>2024-04-11T10:14:56.203Z</updated>
+    <updated>2025-01-02T17:48:02.410Z</updated>
     
-    <content type="html"><![CDATA[<p><a href="https://yukicoder.me/problems/no/2720">yukicoder contest 426 G. Sum of Subarray of Subsequence of…</a></p><a id="more"></a><p><strong>注意：本题解的记号可能与原题面存在出入。</strong></p><p>给你一个长度为 $N$ 的序列 $A$ 和一个长度为 $M$ 的字符串 $S$。$S$ 只包含 $\texttt{a}$ 和 $\texttt{s}$ 两种字符。</p><p>设 $a$ 为一序列。如下定义一系列函数 $f_0, f_1, \dots, f_M$：</p><ol><li>$f_0(a)$ 为 $a$ 中所有元素的和</li><li>对于 $i \gt 0$<ol><li>如果 $S_i = \texttt{a}$，$f_i(a)$ 为 $a$ 的所有 <strong>子区间（连续）</strong> 上的 $f_{i - 1}$ 的函数值的和</li><li>如果 $S_i = \texttt{a}$，$f_i(s)$ 为 $a$ 的所有 <strong>子序列（不一定连续）</strong> 上的 $f_{i - 1}$ 的函数值的和</li></ol></li></ol><p>让你求出 $f_M(A)$。对 $998244353$ 取模。</p><p>$1 \leqslant N, M \leqslant 10^5$。$0 \leqslant A_i \lt 998244353$。</p><p>$\texttt{4s/512MiB}$。</p><hr><p>不难发现，$f_i(a)$ 一定是 $a$ 中所有元素的某种带权和。</p><p>考虑设 $\lambda_i(x, y)$ 表示对于一个长度为 $x + y + 1$ 的序列 $a$，$f_i(a)$ 里 $a_{x + 1}$ 的权值。即</p><script type="math/tex; mode=display">f_i(a) = \sum_{j = 1}^{|a|} \lambda_i(j - 1, |a| - j) a_j</script><p>至于为什么下标要写成这样，因为这样更直观：$a_{x + 1}$ 的左侧有 $x$ 个其他元素，右侧有 $y$ 个其他元素。</p><p>边界条件是</p><script type="math/tex; mode=display">\lambda_0(p, q) = 1</script><p>再令 $\lambda_i$ 的 OGF 为</p><script type="math/tex; mode=display">\Lambda_i(x, y) = \sum_{p \geqslant 0} \sum_{q \geqslant 0} \lambda_i(p, q) x^p y^q</script><p>如果 $S_i = \texttt{a}$</p><script type="math/tex; mode=display">\lambda_i(p, q) = \sum_{r = 0}^p \sum_{s = 0}^q \lambda_{i - 1}(r, s)</script><script type="math/tex; mode=display">\begin{aligned}\Lambda_i(x, y) =& \sum_{p \geqslant 0} \sum_{q \geqslant 0} \lambda_i(p, q) x^p y^q \\=& \sum_{p \geqslant 0} \sum_{q \geqslant 0} \sum_{r = 0}^p \sum_{s = 0}^q \lambda_{i - 1}(r, s) x^p y^q \\=& \sum_{r \geqslant 0} \sum_{s \geqslant 0} \lambda_{i - 1}(r, s) \sum_{p \geqslant r} \sum_{q \geqslant s} x^p y^q \\=& \sum_{r \geqslant 0} \sum_{s \geqslant 0} \lambda_{i - 1}(r, s) \frac{x^r y^s}{(1 - x) (1 - y)} \\=& \frac{\Lambda_{i - 1}(x, y)}{(1 - x) (1 - y)}\end{aligned}</script><p>如果 $S_i = \texttt{s}$</p><script type="math/tex; mode=display">\lambda_i(p, q) = \sum_{r = 0}^p \sum_{s = 0}^q \binom{p}{r} \binom{q}{s} \lambda_{i - 1}(r, s)</script><script type="math/tex; mode=display">\begin{aligned}\Lambda_i(x, y) =& \sum_{p \geqslant 0} \sum_{q \geqslant 0} \lambda_i(p, q) x^p y^q \\=& \sum_{p \geqslant 0} \sum_{q \geqslant 0} \sum_{r = 0}^p \sum_{s = 0}^q \binom{p}{r} \binom{q}{s} \lambda_{i - 1}(r, s) x^p y^q \\=& \sum_{r \geqslant 0} \sum_{s \geqslant 0} \lambda_{i - 1}(r, s) \sum_{p \geqslant r} \sum_{q \geqslant s} \binom{p}{r} \binom{q}{s} x^p y^q \\=& \sum_{r \geqslant 0} \sum_{s \geqslant 0} \lambda_{i - 1}(r, s) \frac{x^r y^s}{(1 - x)^{r + 1} (1 - y)^{s + 1}} \\=& \frac{\Lambda_{i - 1}(x / (1 - x), y / (1 - y))}{(1 - x) (1 - y)}\end{aligned}</script><p>我们想要求的是 $\Lambda_M(x, y)$ 的系数。</p><p>考虑从 $\Lambda_i(\tilde x, \tilde y)$ 到 $\Lambda_{i - 1}(\tilde x, \tilde y)$ 的过程。这里 $\tilde x$ 和 $\tilde y$ 表示到这一步的时候的实际的自变量。</p><p>首先会在柿子里面留下一个</p><script type="math/tex; mode=display">\frac{1}{(1 - \tilde x) (1 - \tilde y)}</script><p>然后如果 $S_i = \texttt{s}$，两个自变量会分别变成</p><script type="math/tex; mode=display">\frac{\tilde x}{1 - \tilde x}, \frac{\tilde y}{1 - \tilde y}</script><p>手玩以下可以发现，上面这个过程如果说进行了 $l$ 次，两个自变量会变成</p><script type="math/tex; mode=display">\frac{x}{1 - lx}, \frac{y}{1 - ly}</script><p>这里的 $x, y$ 表示一开始代进 $\Lambda_M$ 的两个自变量。</p><p>然后每次再柿子里留下的那一部分会变成</p><script type="math/tex; mode=display">\frac{1 - lx}{1 - (l + 1) x}, \frac{1 - ly}{1 - (l + 1) y}</script><p>并且到 $\Lambda_0$ 还没完。所以你可以想象后面还有一个 $\Lambda_{-1} \equiv 1$。</p><p>那么结论就是，存在 $r_0, r_1, \dots, r_{M + 1}$ 使得</p><script type="math/tex; mode=display">\Lambda_M(x, y) = \prod_{j = 0}^{M + 1} (1 - jx)^{r_j} (1 - jy)^{r_j}</script><p>最后的答案就是</p><script type="math/tex; mode=display">\begin{aligned}& \sum_{i = 1}^N [x^{i - 1} y^{n - i}] \Lambda_M(x, y) A_i \\=& \sum_{i = 1}^N \left( [x^{i - 1}] \prod_{j = 0}^{M + 1} (1 - jx)^{r_j} \right) \left( [y^{n - i}] \prod_{j = 0}^{M + 1} (1 - jy)^{r_j} \right) A_i\end{aligned}</script><p>然后你会发现 $x$ 和 $y$ 的部分完全分开了。而且两部分其实长得一模一样。</p><p>中间那两坨我们可以用分治 + NTT 的技巧求解。时间复杂度 $\Theta(N \log_2^2 N)$。</p><p><a href="https://yukicoder.me/submissions/971254">评测记录</a></p>]]></content>
+    <content type="html"><![CDATA[<p><a href="https://yukicoder.me/problems/no/2720">yukicoder contest 426 G. Sum of Subarray of Subsequence of…</a></p><a id="more"></a><p><strong>注意：本题解的记号可能与原题面存在出入。</strong></p><p>给你一个长度为 $N$ 的序列 $A$ 和一个长度为 $M$ 的字符串 $S$。$S$ 只包含 $\texttt{a}$ 和 $\texttt{s}$ 两种字符。</p><p>设 $a$ 为一序列。如下定义一系列函数 $f_0, f_1, \dots, f_M$：</p><ol><li>$f_0(a)$ 为 $a$ 中所有元素的和</li><li>对于 $i \gt 0$<ol><li>如果 $S_i = \texttt{a}$，$f_i(a)$ 为 $a$ 的所有 <strong>子区间（连续）</strong> 上的 $f_{i - 1}$ 的函数值的和</li><li>如果 $S_i = \texttt{s}$，$f_i(a)$ 为 $a$ 的所有 <strong>子序列（不一定连续）</strong> 上的 $f_{i - 1}$ 的函数值的和</li></ol></li></ol><p>让你求出 $f_M(A)$。对 $998244353$ 取模。</p><p>$1 \leqslant N, M \leqslant 10^5$。$0 \leqslant A_i \lt 998244353$。</p><p>$\texttt{4s/512MiB}$。</p><hr><p>不难发现，$f_i(a)$ 一定是 $a$ 中所有元素的某种带权和。</p><p>考虑设 $\lambda_i(x, y)$ 表示对于一个长度为 $x + y + 1$ 的序列 $a$，$f_i(a)$ 里 $a_{x + 1}$ 的权值。即</p><script type="math/tex; mode=display">f_i(a) = \sum_{j = 1}^{|a|} \lambda_i(j - 1, |a| - j) a_j</script><p>至于为什么下标要写成这样，因为这样更直观：$a_{x + 1}$ 的左侧有 $x$ 个其他元素，右侧有 $y$ 个其他元素。</p><p>边界条件是</p><script type="math/tex; mode=display">\lambda_0(p, q) = 1</script><p>再令 $\lambda_i$ 的 OGF 为</p><script type="math/tex; mode=display">\Lambda_i(x, y) = \sum_{p \geqslant 0} \sum_{q \geqslant 0} \lambda_i(p, q) x^p y^q</script><p>如果 $S_i = \texttt{a}$</p><script type="math/tex; mode=display">\lambda_i(p, q) = \sum_{r = 0}^p \sum_{s = 0}^q \lambda_{i - 1}(r, s)</script><script type="math/tex; mode=display">\begin{aligned}\Lambda_i(x, y) =& \sum_{p \geqslant 0} \sum_{q \geqslant 0} \lambda_i(p, q) x^p y^q \\=& \sum_{p \geqslant 0} \sum_{q \geqslant 0} \sum_{r = 0}^p \sum_{s = 0}^q \lambda_{i - 1}(r, s) x^p y^q \\=& \sum_{r \geqslant 0} \sum_{s \geqslant 0} \lambda_{i - 1}(r, s) \sum_{p \geqslant r} \sum_{q \geqslant s} x^p y^q \\=& \sum_{r \geqslant 0} \sum_{s \geqslant 0} \lambda_{i - 1}(r, s) \frac{x^r y^s}{(1 - x) (1 - y)} \\=& \frac{\Lambda_{i - 1}(x, y)}{(1 - x) (1 - y)}\end{aligned}</script><p>如果 $S_i = \texttt{s}$</p><script type="math/tex; mode=display">\lambda_i(p, q) = \sum_{r = 0}^p \sum_{s = 0}^q \binom{p}{r} \binom{q}{s} \lambda_{i - 1}(r, s)</script><script type="math/tex; mode=display">\begin{aligned}\Lambda_i(x, y) =& \sum_{p \geqslant 0} \sum_{q \geqslant 0} \lambda_i(p, q) x^p y^q \\=& \sum_{p \geqslant 0} \sum_{q \geqslant 0} \sum_{r = 0}^p \sum_{s = 0}^q \binom{p}{r} \binom{q}{s} \lambda_{i - 1}(r, s) x^p y^q \\=& \sum_{r \geqslant 0} \sum_{s \geqslant 0} \lambda_{i - 1}(r, s) \sum_{p \geqslant r} \sum_{q \geqslant s} \binom{p}{r} \binom{q}{s} x^p y^q \\=& \sum_{r \geqslant 0} \sum_{s \geqslant 0} \lambda_{i - 1}(r, s) \frac{x^r y^s}{(1 - x)^{r + 1} (1 - y)^{s + 1}} \\=& \frac{\Lambda_{i - 1}(x / (1 - x), y / (1 - y))}{(1 - x) (1 - y)}\end{aligned}</script><p>我们想要求的是 $\Lambda_M(x, y)$ 的系数。</p><p>考虑从 $\Lambda_i(\tilde x, \tilde y)$ 到 $\Lambda_{i - 1}(\tilde x, \tilde y)$ 的过程。这里 $\tilde x$ 和 $\tilde y$ 表示到这一步的时候的实际的自变量。</p><p>首先会在柿子里面留下一个</p><script type="math/tex; mode=display">\frac{1}{(1 - \tilde x) (1 - \tilde y)}</script><p>然后如果 $S_i = \texttt{s}$，两个自变量会分别变成</p><script type="math/tex; mode=display">\frac{\tilde x}{1 - \tilde x}, \frac{\tilde y}{1 - \tilde y}</script><p>手玩以下可以发现，上面这个过程如果说进行了 $l$ 次，两个自变量会变成</p><script type="math/tex; mode=display">\frac{x}{1 - lx}, \frac{y}{1 - ly}</script><p>这里的 $x, y$ 表示一开始代进 $\Lambda_M$ 的两个自变量。</p><p>然后每次再柿子里留下的那一部分会变成</p><script type="math/tex; mode=display">\frac{1 - lx}{1 - (l + 1) x}, \frac{1 - ly}{1 - (l + 1) y}</script><p>并且到 $\Lambda_0$ 还没完。所以你可以想象后面还有一个 $\Lambda_{-1} \equiv 1$。</p><p>那么结论就是，存在 $r_0, r_1, \dots, r_{M + 1}$ 使得</p><script type="math/tex; mode=display">\Lambda_M(x, y) = \prod_{j = 0}^{M + 1} (1 - jx)^{r_j} (1 - jy)^{r_j}</script><p>最后的答案就是</p><script type="math/tex; mode=display">\begin{aligned}& \sum_{i = 1}^N [x^{i - 1} y^{n - i}] \Lambda_M(x, y) A_i \\=& \sum_{i = 1}^N \left( [x^{i - 1}] \prod_{j = 0}^{M + 1} (1 - jx)^{r_j} \right) \left( [y^{n - i}] \prod_{j = 0}^{M + 1} (1 - jy)^{r_j} \right) A_i\end{aligned}</script><p>然后你会发现 $x$ 和 $y$ 的部分完全分开了。而且两部分其实长得一模一样。</p><p>中间那两坨我们可以用分治 + NTT 的技巧求解。时间复杂度 $\Theta(N \log_2^2 N)$。</p><p><a href="https://yukicoder.me/submissions/971254">评测记录</a></p>]]></content>
     
     <summary type="html">
     
@@ -575,102 +649,6 @@ F(x)=\sum_{i=0}^nf_ix^i&lt;/script&gt;&lt;p&gt;和 $n+1$ 个点值 $a_0,a_1,\dot
       <category term="构造" scheme="https://github.com/Challestend/tags/%E6%9E%84%E9%80%A0/"/>
     
       <category term="原题" scheme="https://github.com/Challestend/tags/%E5%8E%9F%E9%A2%98/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>随笔题解 Pb. 3</title>
-    <link href="https://github.com/Challestend/random-solution-pb-3/"/>
-    <id>https://github.com/Challestend/random-solution-pb-3/</id>
-    <published>2022-09-10T13:43:56.000Z</published>
-    <updated>2024-01-08T14:54:20.713Z</updated>
-    
-    <content type="html"><![CDATA[<p>来源：<a href="https://atcoder.jp/contests/abc268/tasks/abc268_f">ABC268 F Best Concatenation</a></p><a id="more"></a><p>给定 $N$ 个只包含 $\texttt 1$ 到 $\texttt 9$ 的数字和字符 $\texttt X$ 的非空字符串 $S_1,S_2,\dots,S_N$。您需要将这 $N$ 个字符串拼接成一个大串 $T$，即确定一个长度为 $N$ 的排列 $P$ 然后令</p><script type="math/tex; mode=display">T=S_{P_1}+S_{P_2}+\cdots+S_{P_N}</script><p>在这之后，对于每一个满足 $1\leqslant i\lt j\leqslant|T|$ 的 $(i,j)$，如果 $T_i=\texttt X$ 且 $T_j$ 是数字，那么您获得与 $T_j$ 的数值相等的分数。试求您能够获得的最终分数的最大值。</p><p>$2\leqslant N\leqslant 2\times 10^5$，$\sum|S_i|\leqslant 2\times 10^5$。</p><p>$\texttt{2s/1024MB}$。</p><p>也不知道我这个题意说的清不清楚。</p><p>总之就是如果前面有一个 ‘X’ 后面有一个数字那么就获得那个数字那么多的分数。然后求最大分数。</p><p>对于每个 $S_i$，令 $A_i$ 表示其中 $\texttt X$ 的数量，$B_i$ 表示其中数字的值的总和。</p><p>考虑已经确定了排列 $P$。此时若交换 $P_i$ 和 $P_{i+1}$，不难发现分数变化量为</p><script type="math/tex; mode=display">A_{P_{i+1}}B_{P_i}-A_{P_i}B_{P_{i+1}}</script><p>如果 $P$ 是最优解，上面这个变化量需要 $\leqslant 0$。整理一下得到</p><script type="math/tex; mode=display">\frac{A_{P_i}}{B_{P_i}}\geqslant\frac{A_{P_{i+1}}}{B_{P_{i+1}}}</script><p>即 $\frac{A_{P_i}}{B_{P_i}}$ 单调不增。</p><p>那么把所有 $\frac{A_i}{B_i}$ 算出来排个序即可。注意特殊处理一下 $B_i=0$ 的情况。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;来源：&lt;a href=&quot;https://atcoder.jp/contests/abc268/tasks/abc268_f&quot;&gt;ABC268 F Best Concatenation&lt;/a&gt;&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="题解" scheme="https://github.com/Challestend/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-      <category term="AtCoder" scheme="https://github.com/Challestend/tags/AtCoder/"/>
-    
-      <category term="排序" scheme="https://github.com/Challestend/tags/%E6%8E%92%E5%BA%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>随笔题解 Ct. 2</title>
-    <link href="https://github.com/Challestend/random-solution-ct-2/"/>
-    <id>https://github.com/Challestend/random-solution-ct-2/</id>
-    <published>2022-09-05T05:18:14.000Z</published>
-    <updated>2024-01-08T14:54:20.711Z</updated>
-    
-    <content type="html"><![CDATA[<p>来源：<a href="https://codeforces.com/contest/1725">COMPFEST 14 - Preliminary Online Mirror (Unrated, ICPC Rules, Teams Preferred)</a></p><p>21：35 开始 5h，02：35 结束。</p><blockquote><p>群友「多打打，运气好直接少走 $70$ 年弯路。」</p></blockquote><p>当然我是 1：00 就去睡觉了，剩下一个 C 交给 chr 写了。</p><p>当然之前 20：00 的 ARC 我是不可能一不小心下了一波小分的。没有这种事。</p><a id="more"></a><h2 id="A-Accumulation-of-Dominoes"><a href="#A-Accumulation-of-Dominoes" class="headerlink" title="A. Accumulation of Dominoes"></a>A. Accumulation of Dominoes</h2><p>有一个 $N\times M$ 的网格写有数字，第一行从左到右依次是 $1,2,\dots,M$，第二行是 $M+1,M+2,\dots,2M$，以此类推。试求有多少对格子四联通且数字相差恰好 $1$。</p><p>$1\leqslant N,M\leqslant 10^9$。</p><p>$\texttt{1s/256MB}$。</p><p>签到题一号。</p><p>显然 $M\gt 1$ 时答案为 $N\times(M-1)$；$M=1$ 时答案为 $N-1$。</p><h2 id="B-Basketball-Together"><a href="#B-Basketball-Together" class="headerlink" title="B. Basketball Together"></a>B. Basketball Together</h2><p>有 $N$ 个人，第 $i$ 个人的力量是 $P_i$。可以把若干个人组成队伍，这样同一个队伍里的所有人的力量都会变为队伍中力量最大的人的力量。一个队伍是合法的当且仅当其中所有人的力量之和严格大于 $D$。试求至多能组成多少个合法的队伍。</p><p>$1\leqslant N\leqslant 10^5$，$1\leqslant D,P_i\leqslant 10^9$。</p><p>$\texttt{1s/256MB}$。</p><p>签到题二号。</p><p>显然最优策略是选定一个剩下的人里面力量最大的。设这个人的力量为 $A$，那么在从剩下的人里面抽出来力量最小的 $\left\lceil\frac{D+1}{A}\right\rceil-1$ 个人凑成一个队伍即可。</p><h2 id="G-Garage"><a href="#G-Garage" class="headerlink" title="G. Garage"></a>G. Garage</h2><p>如果一个正整数 $x$ 能够被表示成 $b^2-a^2$ 的形式，其中 $1\lt a\lt b$，那么称 $x$ 是好的。试求第 $N$ 小的好的正整数。</p><p>$1\leqslant N\leqslant 10^9$。</p><p>$\texttt{1s/128MB}$。</p><p>当然，OEIS 上是能够找到这个数列的。它是 <a href="http://oeis.org/A024352">A024352</a>。</p><p>我们可以看到，有 $a_n=4+\left\lfloor\frac{4n-3}{3}\right\rfloor\;(n\gt 1)$。特殊地，$a_1=3$。</p><h2 id="M-Moving-Both-Hands"><a href="#M-Moving-Both-Hands" class="headerlink" title="M. Moving Both Hands"></a>M. Moving Both Hands</h2><p>有一张 $N$ 个点 $M$ 条边的有向图，无重边，无自环，边有边权。现在 Challestend 想要玩一个游戏：首先将他的两只手分别放在两个不同的点上。每次他可以将其中一只手沿着一条边移动到一个相邻的点。这一过程需要花费的时间等于边的边权。如果某个时刻 Challestend 的两只手停留在了同一个点上，那么结束游戏。</p><p>试求，对于所有 $2\leqslant p\leqslant N$，如果 Challestend 的左手放在 $1$ 号点上，右手放在 $p$ 号点上，那么他是否能够在有限时间内结束游戏，以及如果答案为是，结束游戏的最短用时是多少。</p><p>$2\leqslant N\leqslant 10^5$，$0\leqslant M\leqslant 2\times 10^5$，边权 $1\leqslant W_i\leqslant 10^9$。</p><p>$\texttt{1s/256MB}$。</p><p>日常花式求最短路。相当于求 $1$ 到 $p$ 的最短路，但是要求路径的前半段正常走，后半段要按照边的反方向走。</p><p>总之就是正着求一遍最短路然后倒着再求一遍就可以了。</p><h2 id="H-Hot-Black-Hot-White"><a href="#H-Hot-Black-Hot-White" class="headerlink" title="H. Hot Black Hot White"></a>H. Hot Black Hot White</h2><p>令 $\operatorname{concat}(x,y)$ 表示将 $x$ 和 $y$ 在 $10$ 进制下拼接起来得到的数，如 $\operatorname{concat}(10,24)=1024$。</p><p>给定 $N$ 个数 $A_1,A_2,\dots,A_N$，保证 $N$ 是偶数。将这 $N$ 个数分成两类，每类 $\frac{N}{2}$ 个。如果存在一个数 $Z\in[0,3)$，使得对于任意一对被分到不同类的 $A_i$ 和 $A_j$，都有</p><script type="math/tex; mode=display">\operatorname{concat}(A_i,A_j)\times\operatorname{concat}(A_j,A_i)+A_i\times A_j\not\equiv Z\pmod 3</script><p>那么这种分类方案是好的。试给出一种好的分类方案并给出对应的 $Z$。</p><p>$2\leqslant N\leqslant 10^5$，$1\leqslant A_i\leqslant 10^9$。</p><p>$\texttt{1s/256MB}$。</p><p>众所周知，一个数模 $3$ 等于它的 $10$ 进制数位和模 $3$。根据这一条性质，我们能够很容易地得出</p><script type="math/tex; mode=display">\operatorname{concat}(x,y)\equiv x+y\pmod 3</script><p>于是限制条件可以整理为</p><script type="math/tex; mode=display">A_i^2+A_j^2\not\equiv Z\pmod 3</script><p>$0,1,2$ 平方之后分别变为 $0,1,1$。那么相当于将 $N$ 个 $0$ 或 $1$ 分成两类，并且找到一个数使得它不能通过从两类中分别选出一个数相加得到。不难发现，$0$ 比较多时可以取 $2$，$1$ 比较多时可以取 $0$。</p><h2 id="C-Circular-Mirror"><a href="#C-Circular-Mirror" class="headerlink" title="C. Circular Mirror"></a>C. Circular Mirror</h2><p>一个圆上排列着 $N$ 个标记点，顺时针标记为 $1,2,\dots,N$。对于 $1\leqslant i\lt N$，$i$ 号点到 $i+1$ 号点之间的弧长为 $D_i$；$N$ 号点到 $1$ 号点之间的弧长为 $D_N$。</p><p>现在需要用 $1\sim M$ 的 $M$ 种颜色给每个标记点上色，且不能出现构成直角三角形的三个标记点颜色均相同的情况。求方案数，对 $998244353$ 取模。</p><p>$1\leqslant N\leqslant 3\times 10^5$，$2\leqslant M\leqslant 3\times 10^5$。</p><p>$\texttt{1s/256MB}$。</p><p>以下仅考虑 $N\gt 2$。</p><p>考虑直径穿过的一对标记点，如果这两个标记点颜色相同，那么用于这两个标记点的颜色就不能用于其他标记点；如果这两个标记点颜色不同，那么并没有什么其他限制。</p><p>设一共有 $K$ 对标记点被直径穿过。考虑枚举有 $i$ 对标记点颜色相同，可以很容易地得到答案为</p><script type="math/tex; mode=display">\sum_{i=0}^K{K\choose i}{M\choose i}i!(M-i)^{K-i}(M-i-1)^{K-i}(M-i)^{N-2K}</script>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;来源：&lt;a href=&quot;https://codeforces.com/contest/1725&quot;&gt;COMPFEST 14 - Preliminary Online Mirror (Unrated, ICPC Rules, Teams Preferred)&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;21：35 开始 5h，02：35 结束。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;群友「多打打，运气好直接少走 $70$ 年弯路。」&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;当然我是 1：00 就去睡觉了，剩下一个 C 交给 chr 写了。&lt;/p&gt;
-&lt;p&gt;当然之前 20：00 的 ARC 我是不可能一不小心下了一波小分的。没有这种事。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="题解" scheme="https://github.com/Challestend/categories/%E9%A2%98%E8%A7%A3/"/>
-    
-    
-      <category term="Codeforces" scheme="https://github.com/Challestend/tags/Codeforces/"/>
-    
-      <category term="杂题" scheme="https://github.com/Challestend/tags/%E6%9D%82%E9%A2%98/"/>
-    
-      <category term="构造" scheme="https://github.com/Challestend/tags/%E6%9E%84%E9%80%A0/"/>
-    
-      <category term="思维" scheme="https://github.com/Challestend/tags/%E6%80%9D%E7%BB%B4/"/>
-    
-      <category term="Dijkstra" scheme="https://github.com/Challestend/tags/Dijkstra/"/>
-    
-      <category term="简单题" scheme="https://github.com/Challestend/tags/%E7%AE%80%E5%8D%95%E9%A2%98/"/>
-    
-      <category term="贪心" scheme="https://github.com/Challestend/tags/%E8%B4%AA%E5%BF%83/"/>
-    
-      <category term="OEIS" scheme="https://github.com/Challestend/tags/OEIS/"/>
-    
-      <category term="计数" scheme="https://github.com/Challestend/tags/%E8%AE%A1%E6%95%B0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>你解锁了『牺牲者污化以撒』</title>
-    <link href="https://github.com/Challestend/epiphany-tr-isaac/"/>
-    <id>https://github.com/Challestend/epiphany-tr-isaac/</id>
-    <published>2022-08-29T12:56:07.000Z</published>
-    <updated>2024-01-08T14:54:20.705Z</updated>
-    
-    <content type="html"><![CDATA[<p>英文原文是 “Sacrifice”，为了匹配堕化角色解锁成就的命名格式（比如<strong>堕化以撒</strong>解锁成就 “Broken” 被译为「神伤者」）而译为「牺牲者」。</p><p>解锁方式：使用<strong>堕化以撒</strong>击败精神错乱。</p><p>初始基础属性和<strong>以撒</strong>完全相同；自带一个炸弹；自带次要主动道具 <strong>Blighted Dice</strong>。</p><a id="more"></a><h2 id="被动能力"><a href="#被动能力" class="headerlink" title="被动能力"></a>被动能力</h2><p><strong>LESS OPTIONS</strong></p><p><strong>MORE CONTROL</strong></p><p><strong>污化以撒</strong>与<strong>堕化以撒</strong>类似，只能同时持有 $8$ 个被动道具，且剧情道具和<strong>长子名分</strong>不占据被动道具槽。但与<strong>堕化以撒</strong>不同的是，<strong>污化以撒</strong>没有所有道具二选一的能力。</p><p>关于 <strong>MORE CONTROL</strong>，见 <strong>Blighted Dice</strong>。</p><h2 id="Blighted-Dice"><a href="#Blighted-Dice" class="headerlink" title="Blighted Dice"></a>Blighted Dice</h2><p><strong>Reroll a part of you</strong></p><p>道具品质 $4$。</p><p>主动道具，$1$ 充能。</p><p>无标签。</p><p>存在于以下道具池：宝箱房，隐藏房，贪婪模式商店，贪婪模式隐藏房，腐烂乞丐。</p><p>使用时，将被动道具槽内当前被选中的道具摧毁，并生成两个随机底座道具，这两个道具均为来自相同道具池内的相同品质道具，且只能拾取一个。</p><p>使用后，该道具变为 <strong>Broken Dice</strong>。</p><h2 id="Broken-Dice"><a href="#Broken-Dice" class="headerlink" title="Broken Dice"></a>Broken Dice</h2><p><strong>Ruined destiny</strong></p><p>道具品质 $4$。</p><p>主动道具，$6$ 充能。</p><p>标签：非伊甸</p><p>不在任何道具池内且为隐藏道具。</p><p>该道具可以在任意充能时使用。使用时，不消耗充能并触发 <strong>Blighted Dice</strong> 的使用效果，但只生成一个底座道具，同时移除角色的一个心之容器或两颗魂心（可能致死）。</p><p>满充能时，该道具转化为同样满充能的 <strong>Blighted Dice</strong>。</p><p>持有未满充能的该道具时，若触碰底座道具，角色会将其摧毁，然后将该道具充能至满充能。如果角色处于这种状态下，被触碰后会被摧毁的底座道具会变得半透明。触碰由 <strong>Blighted Dice</strong> 的使用效果生成的底座道具或剧情道具不会触发这一条。</p><p><strong>游魂</strong>使用该道具会立即死亡。这一条同样适用于<strong>堕化游魂</strong>，虽然在通常的游戏流程中<strong>堕化游魂</strong>无法遇到该道具，因为其没有「攻击性」标签。</p><p><strong>堕化雅各之魂</strong>能够正常使用该道具。</p><h2 id="长子名分"><a href="#长子名分" class="headerlink" title="长子名分"></a>长子名分</h2><p><strong>Better options</strong></p><p><strong>更好的选择</strong></p><p>触发 <strong>Blighted Dice</strong> 的使用效果时，生成的底座道具有 $25\%$ 变为被摧毁的道具品质 $+1$ 的道具。</p><h2 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h2><ol><li>若持有未满充能的 <strong>Broken Dice</strong>，角色总是会摧毁遇到的第一个被动底座道具。<strong>千万不要在这种情况下触碰强力道具。剧情道具可以无视这一条，但必须注意的是长子名分在这种情况下会被摧毁，尽管它在某些方面拥有类似于剧情道具的性质。</strong></li><li>若未持有<strong>长子名分</strong>，使用 <strong>Blighted Dice</strong> 摧毁道具只会得到品质相同的道具，这意味着无论摧毁多少个低品质道具都无法使得角色获得较大的提升。</li><li>使用 <strong>Blighted Dice</strong> 摧毁道具时，生成的底座道具会从被摧毁的道具出现的所有道具池中抽取，而与角色实际在哪个道具池中遇到该道具无关。以<strong>五芒星</strong>为例，即使角色通过 BOSS 掉落的形式获取该道具，将其摧毁时仍然可能会生成恶魔房道具池甚至是究极隐藏房道具池的道具。</li><li>即使一个道具已经因为被角色拾取过而被移除出道具池，它仍然可能被 <strong>Blighted Dice</strong> 生成。</li><li>BOSS 房的 $1$ 级道具中有很多提供心之容器的道具，这类道具即使被放下不会收回已经获得的心之容器。使用 <strong>Blighted Dice</strong> 摧毁一个这类道具大概率会得到另外两个提供心之容器的道具。这相当于 $6$ 格充能换取至少一个心之容器的血量，而且如果当前层存在确定不需要的其他道具则还可以牺牲它们来换取充能。重复这样做，角色可以获得大量的心之容器用于获取恶魔交易等用途。</li><li>若未持有<strong>长子名分</strong>，使用 <strong>Blighted Dice</strong> 无法得到高品质的道具，这使得<strong>污化以撒</strong>在获取高品质道具方面不如<strong>堕化以撒</strong>。因为虽然前者能够通过 <strong>Blighted Dice</strong> 产生多次而不仅仅是一次二选一，这些二选一的品质始终是确定的；而后者则有可能在虽然仅有一次的二选一中获得高品质道具。</li><li><strong>逆位审判</strong>可以在当前房间生成补货机，可以将 <strong>Blighted Dice</strong> 生成的道具重置为当前房间道具池的道具。可以在天使房 / 恶魔房 / 隐藏房使用这一策略，因为这些房间道具池的道具平均质量较高。隐藏房有时会出现天然生成的补货机，也可以加以利用。</li><li>剩余部分基本上和<strong>堕化以撒</strong>类似，如<strong>糖果心</strong>，<strong>灵魂吊坠</strong>，<strong>店长的胯袋</strong>，<strong>谷底石</strong>等道具能够给角色带来极大的属性提升；<strong>虚空</strong>，<strong>无底坑</strong>等道具能够回收利用角色不得不放下的道具等。</li></ol>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;英文原文是 “Sacrifice”，为了匹配堕化角色解锁成就的命名格式（比如&lt;strong&gt;堕化以撒&lt;/strong&gt;解锁成就 “Broken” 被译为「神伤者」）而译为「牺牲者」。&lt;/p&gt;
-&lt;p&gt;解锁方式：使用&lt;strong&gt;堕化以撒&lt;/strong&gt;击败精神错乱。&lt;/p&gt;
-&lt;p&gt;初始基础属性和&lt;strong&gt;以撒&lt;/strong&gt;完全相同；自带一个炸弹；自带次要主动道具 &lt;strong&gt;Blighted Dice&lt;/strong&gt;。&lt;/p&gt;
-    
-    </summary>
-    
-      <category term="颓废" scheme="https://github.com/Challestend/categories/%E9%A2%93%E5%BA%9F/"/>
-    
-    
-      <category term="以撒的结合" scheme="https://github.com/Challestend/tags/%E4%BB%A5%E6%92%92%E7%9A%84%E7%BB%93%E5%90%88/"/>
-    
-      <category term="MOD" scheme="https://github.com/Challestend/tags/MOD/"/>
-    
-      <category term="Epiphany" scheme="https://github.com/Challestend/tags/Epiphany/"/>
     
   </entry>
   
